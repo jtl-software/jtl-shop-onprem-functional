@@ -18,7 +18,7 @@ use Traversable;
  * Extract a property from a collection of objects.
  *
  * @param Traversable|array $collection
- * @param string $propertyName
+ * @param string            $propertyName
  * @return array
  * @no-named-arguments
  */

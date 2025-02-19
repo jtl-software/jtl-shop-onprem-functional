@@ -14,8 +14,6 @@ use Functional\Exceptions\InvalidArgumentException;
 use Traversable;
 use WeakReference;
 
-use function serialize;
-
 use const PHP_VERSION_ID;
 
 /**
@@ -45,7 +43,7 @@ function value_to_key(...$any)
 
                 if (isset($objectReferences[$hash])) {
                     if ($objectReferences[$hash]->get() === null) {
-                        $collisions[$hash] = ($collisions[$hash] ?? 0) + 1;
+                        $collisions[$hash]       = ($collisions[$hash] ?? 0) + 1;
                         $objectReferences[$hash] = WeakReference::create($value);
                     }
                 } else {
@@ -59,7 +57,7 @@ function value_to_key(...$any)
                  * scope and mess with the object hashes
                  */
                 $objectReferences[$hash] = $value;
-                $key = \get_class($value) . ':' . $hash;
+                $key                     = \get_class($value) . ':' . $hash;
             }
             return $key;
         };

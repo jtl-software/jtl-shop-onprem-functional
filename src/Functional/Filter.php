@@ -17,7 +17,7 @@ use Traversable;
  * Alias of Functional\select()
  *
  * @param Traversable|array $collection
- * @param callable $callback
+ * @param callable          $callback
  * @return array
  * @no-named-arguments
  */

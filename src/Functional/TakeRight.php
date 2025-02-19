@@ -20,8 +20,8 @@ use Traversable;
  * preserveKeys to TRUE. String keys are always preserved, regardless of this parameter.
  *
  * @param Traversable|array $collection
- * @param int $count
- * @param bool $preserveKeys
+ * @param int               $count
+ * @param bool              $preserveKeys
  *
  * @return array
  * @no-named-arguments

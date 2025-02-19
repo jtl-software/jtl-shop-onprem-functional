@@ -18,11 +18,10 @@ use Traversable;
  * is called with three arguments: (element, index, collection)
  *
  * @param Traversable|array $collection
- * @param callable $callback
- * @return null
+ * @param callable          $callback
  * @no-named-arguments
  */
-function each($collection, callable $callback)
+function each($collection, callable $callback): void
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

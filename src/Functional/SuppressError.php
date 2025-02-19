@@ -12,19 +12,17 @@ namespace Functional;
 
 use ErrorException;
 
-use function Functional\const_function;
-
 /**
  * Takes a function and returns a new function that wraps the callback and suppresses the PHP error
  *
  * @param callable $callback
- * @throws ErrorException Throws exception if PHP error happened
  * @return mixed
  * @no-named-arguments
+ * @throws ErrorException Throws exception if PHP error happened
  */
 function suppress_error(callable $callback)
 {
-    return function (...$arguments) use ($callback) {
+    return static function (...$arguments) use ($callback) {
         try {
             \set_error_handler(const_function(null));
 

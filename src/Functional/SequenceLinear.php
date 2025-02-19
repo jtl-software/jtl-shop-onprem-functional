@@ -17,8 +17,8 @@ use Traversable;
 /**
  * Returns an infinite, traversable sequence that linearly grows by given amount
  *
- * @param integer $start
- * @param integer $amount
+ * @param int $start
+ * @param int $amount
  * @return Traversable
  * @no-named-arguments
  */

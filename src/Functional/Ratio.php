@@ -17,8 +17,8 @@ use Traversable;
  * Takes a collection and returns the quotient of all elements
  *
  * @param Traversable|array $collection
- * @param integer|float $initial
- * @return integer|float
+ * @param int|float         $initial
+ * @return int|float
  * @no-named-arguments
  */
 function ratio($collection, $initial = 1)

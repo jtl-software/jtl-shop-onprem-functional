@@ -19,7 +19,5 @@ namespace Functional;
  */
 function const_function($value)
 {
-    return function () use ($value) {
-        return $value;
-    };
+    return static fn() => $value;
 }

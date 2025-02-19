@@ -25,7 +25,7 @@ use Traversable;
  * while flatten(map(collection, callback)) will return [1,2,3,4]
  *
  * @param Traversable|array $collection
- * @param callable $callback
+ * @param callable          $callback
  * @return array
  * @no-named-arguments
  */

@@ -18,13 +18,13 @@ use Functional\Exceptions\InvalidArgumentException;
  * Use Functional\…, Functional\…() or Functional\placeholder() as a placeholder
  *
  * @param callable $callback
- * @param mixed ...$arguments
+ * @param mixed    ...$arguments
  * @return callable
  * @no-named-arguments
  */
 function partial_any(callable $callback, ...$arguments)
 {
-    return function (...$innerArguments) use ($callback, $arguments) {
+    return static function (...$innerArguments) use ($callback, $arguments) {
         $placeholder = …();
 
         foreach ($arguments as $position => &$argument) {

@@ -17,11 +17,11 @@ use Traversable;
  * Inspired by JavaScript’s `Object.entries`, and Python’s `enumerate`,
  * convert a key-value map into an array of key-value pairs
  *
- * @see Functional\from_entries
  * @param Traversable|array $collection
- * @param int $start
+ * @param int               $start
  * @return array
  * @no-named-arguments
+ * @see Functional\from_entries
  */
 function entries($collection, int $start = 0)
 {

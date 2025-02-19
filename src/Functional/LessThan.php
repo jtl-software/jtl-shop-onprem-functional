@@ -19,7 +19,5 @@ namespace Functional;
  */
 function less_than($b)
 {
-    return function ($a) use ($b) {
-        return $a < $b;
-    };
+    return static fn($a) => $a < $b;
 }

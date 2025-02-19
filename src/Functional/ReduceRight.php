@@ -15,8 +15,8 @@ use Traversable;
 
 /**
  * @param Traversable|array $collection
- * @param callable $callback
- * @param mixed $initial
+ * @param callable          $callback
+ * @param mixed             $initial
  * @return mixed
  * @no-named-arguments
  */

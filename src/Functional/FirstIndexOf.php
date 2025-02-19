@@ -17,7 +17,7 @@ use Traversable;
  * Returns the first index holding specified value in the collection. Returns false if value was not found
  *
  * @param Traversable|array $collection
- * @param mixed $value
+ * @param mixed             $value
  * @return mixed
  * @no-named-arguments
  */

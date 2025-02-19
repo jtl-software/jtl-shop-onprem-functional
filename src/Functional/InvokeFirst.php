@@ -18,8 +18,8 @@ use Traversable;
  * $methodName. Any extra arguments passed to invoke will be forwarded on to the method invocation.
  *
  * @param Traversable|array $collection
- * @param string $methodName
- * @param array $arguments
+ * @param string            $methodName
+ * @param array             $arguments
  *
  * @return mixed
  * @no-named-arguments

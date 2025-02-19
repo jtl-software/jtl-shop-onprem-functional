@@ -21,7 +21,5 @@ namespace Functional;
  */
 function flip(callable $callback)
 {
-    return function () use ($callback) {
-        return $callback(...\array_reverse(\func_get_args()));
-    };
+    return static fn() => $callback(...\array_reverse(\func_get_args()));
 }

@@ -16,13 +16,13 @@ use ErrorException;
  * Takes a function and returns a new function that wraps the callback and rethrows PHP errors as exception
  *
  * @param callable $callback
- * @throws ErrorException Throws exception if PHP error happened
  * @return mixed
  * @no-named-arguments
+ * @throws ErrorException Throws exception if PHP error happened
  */
 function error_to_exception(callable $callback)
 {
-    return function (...$arguments) use ($callback) {
+    return static function (...$arguments) use ($callback) {
         try {
             \set_error_handler(
                 static function ($level, $message, $file, $line) {

@@ -14,13 +14,13 @@ namespace Functional;
  * Return a new function that captures the return value of $callback in $result and returns the callbacks return value
  *
  * @param callable $callback
- * @param mixed $result
+ * @param mixed    $result
  * @return callable
  * @no-named-arguments
  */
 function capture(callable $callback, &$result)
 {
-    return function (...$args) use ($callback, &$result) {
+    return static function (...$args) use ($callback, &$result) {
         $result = $callback(...$args);
 
         return $result;

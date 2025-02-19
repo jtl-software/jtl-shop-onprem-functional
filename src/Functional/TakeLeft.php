@@ -18,7 +18,7 @@ use Traversable;
  * elements, the whole collection will be returned as an array.
  *
  * @param Traversable|array $collection
- * @param int $count
+ * @param int               $count
  *
  * @return array
  * @no-named-arguments

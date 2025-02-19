@@ -32,11 +32,11 @@ function zip(...$args)
     }
 
     $result = [];
-    foreach ((array) \reset($args) as $index => $value) {
+    foreach ((array)\reset($args) as $index => $value) {
         $zipped = [];
 
         foreach ($args as $arg) {
-            $zipped[] = isset($arg[$index]) ? $arg[$index] : null;
+            $zipped[] = $arg[$index] ?? null;
         }
 
         if ($callback !== null) {
