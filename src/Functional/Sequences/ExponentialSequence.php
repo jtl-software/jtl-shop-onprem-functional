@@ -16,16 +16,16 @@ use Iterator;
 /** @internal */
 class ExponentialSequence implements Iterator
 {
-    /** @var integer */
+    /** @var int */
     private $start;
 
-    /** @var integer */
+    /** @var int */
     private $percentage;
 
-    /** @var integer */
+    /** @var int */
     private $value;
 
-    /** @var integer */
+    /** @var int */
     private $times;
 
     public function __construct($start, $percentage)
@@ -34,32 +34,32 @@ class ExponentialSequence implements Iterator
         InvalidArgumentException::assertIntegerGreaterThanOrEqual($percentage, 1, __METHOD__, 2);
         InvalidArgumentException::assertIntegerLessThanOrEqual($percentage, 100, __METHOD__, 2);
 
-        $this->start = $start;
+        $this->start      = $start;
         $this->percentage = $percentage;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return $this->value;
     }
 
-    public function next()
+    public function next(): void
     {
-        $this->value = (int) \round(\pow($this->start * (1 + $this->percentage / 100), $this->times));
+        $this->value = (int)\round(($this->start * (1 + $this->percentage / 100)) ** $this->times);
         $this->times++;
     }
 
-    public function key()
+    public function key(): mixed
     {
         return null;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->times = 1;
         $this->value = $this->start;

@@ -17,7 +17,7 @@ use Traversable;
  * Select the specified keys from the array
  *
  * @param Traversable|array $collection
- * @param array $keys
+ * @param array             $keys
  * @return array
  * @no-named-arguments
  */

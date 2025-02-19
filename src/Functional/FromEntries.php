@@ -17,10 +17,10 @@ use Traversable;
  * Inspired by JavaScript’s `Object.fromEntries`,
  * convert an array of key-value pairs into a key-value map
  *
- * @see Functional\entries
  * @param Traversable|array $collection
  * @return array
  * @no-named-arguments
+ * @see Functional\entries
  */
 function from_entries($collection)
 {
@@ -30,7 +30,7 @@ function from_entries($collection)
     foreach ($collection as $entry) {
         InvalidArgumentException::assertPair($entry, __FUNCTION__, 1);
         [$key, $value] = $entry;
-        InvalidArgumentException::assertValidArrayKey($key, __FUNCTION__, 1);
+        InvalidArgumentException::assertValidArrayKey($key, __FUNCTION__);
         $aggregation[$key] = $value;
     }
 

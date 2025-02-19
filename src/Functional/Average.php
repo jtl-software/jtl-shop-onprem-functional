@@ -24,7 +24,7 @@ function average($collection)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
-    $sum = null;
+    $sum     = null;
     $divisor = 0;
 
     foreach ($collection as $element) {

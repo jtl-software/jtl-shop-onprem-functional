@@ -18,11 +18,11 @@ use Traversable;
  * Opposite is Functional\reject(). Callback arguments will be element, index, collection
  *
  * @param Traversable|array $collection
- * @param callable|null $callback
+ * @param callable|null     $callback
  * @return array
  * @no-named-arguments
  */
-function select($collection, callable $callback = null)
+function select($collection, ?callable $callback = null)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

@@ -18,8 +18,8 @@ use Traversable;
  * true values will be compared in strict mode
  *
  * @param Traversable|array $collection
- * @param mixed $value
- * @param bool $strict
+ * @param mixed             $value
+ * @param bool              $strict
  * @return bool
  * @no-named-arguments
  */

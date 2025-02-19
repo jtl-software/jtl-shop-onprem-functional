@@ -16,13 +16,11 @@ namespace Functional;
  * Use Functional\…, Functional\…() or Functional\placeholder() as a placeholder
  *
  * @param callable $callback
- * @param array ...$arguments
+ * @param array    ...$arguments
  * @return callable
  * @no-named-arguments
  */
 function partial_left(callable $callback, ...$arguments)
 {
-    return function (...$innerArguments) use ($callback, $arguments) {
-        return $callback(...\array_merge($arguments, $innerArguments));
-    };
+    return static fn(...$innerArguments) => $callback(...\array_merge($arguments, $innerArguments));
 }

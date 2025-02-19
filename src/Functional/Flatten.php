@@ -25,7 +25,7 @@ function flatten($collection)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
-    $stack = [$collection];
+    $stack  = [$collection];
     $result = [];
 
     while (!empty($stack)) {

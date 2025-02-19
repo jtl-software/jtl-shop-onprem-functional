@@ -18,13 +18,13 @@ use Functional\Exceptions\InvalidArgumentException;
  * If no such index exists, return the default value.
  *
  * @param ArrayAccess|array $collection
- * @param mixed $index
- * @param mixed $default
- * @param callable|null $callback Custom function to check if index exists
+ * @param mixed             $index
+ * @param mixed             $default
+ * @param callable|null     $callback Custom function to check if index exists
  * @return mixed
  * @no-named-arguments
  */
-function pick($collection, $index, $default = null, callable $callback = null)
+function pick($collection, $index, $default = null, ?callable $callback = null)
 {
     InvalidArgumentException::assertArrayAccess($collection, __FUNCTION__, 1);
 
@@ -32,10 +32,8 @@ function pick($collection, $index, $default = null, callable $callback = null)
         if (!isset($collection[$index]) && (!\is_array($collection) || !\array_key_exists($index, $collection))) {
             return $default;
         }
-    } else {
-        if (!$callback($collection, $index)) {
-            return $default;
-        }
+    } elseif (!$callback($collection, $index)) {
+        return $default;
     }
 
     return $collection[$index];

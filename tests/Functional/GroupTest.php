@@ -41,7 +41,7 @@ class GroupTest extends AbstractTestCase
     public function testExceptionIsThrownWhenCallbacksReturnsInvalidKey(): void
     {
         $array = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6'];
-        $keyMap = [true, 1, -1, 2.1, 'str', null];
+        $keyMap = [true, 1, -1, 2, 'str', null];
         $fn = function ($v, $k, $collection) use (&$keyMap) {
             return $keyMap[$k];
         };
@@ -54,7 +54,6 @@ class GroupTest extends AbstractTestCase
         ];
         self::assertSame($result, group($array, $fn));
         self::assertSame($result, group(new ArrayIterator($array), $fn));
-
 
         $invalidTypes = [
                           'resource' => \stream_context_create(),

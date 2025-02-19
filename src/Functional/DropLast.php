@@ -17,7 +17,7 @@ use Traversable;
  * Drop all elements from a collection after callback returns true
  *
  * @param Traversable|array $collection
- * @param callable $callback
+ * @param callable          $callback
  * @return array
  * @no-named-arguments
  */

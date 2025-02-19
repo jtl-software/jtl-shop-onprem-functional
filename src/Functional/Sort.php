@@ -17,8 +17,8 @@ use Traversable;
  * Sorts a collection with a user-defined function, optionally preserving array keys
  *
  * @param Traversable|array $collection
- * @param callable $callback
- * @param bool $preserveKeys
+ * @param callable          $callback
+ * @param bool              $preserveKeys
  * @return array
  * @no-named-arguments
  */
@@ -35,9 +35,7 @@ function sort($collection, callable $callback, $preserveKeys = false)
 
     $fn = $preserveKeys ? 'uasort' : 'usort';
 
-    $fn($array, function ($left, $right) use ($callback, $collection) {
-        return $callback($left, $right, $collection);
-    });
+    $fn($array, fn($left, $right) => $callback($left, $right, $collection));
 
     return $array;
 }

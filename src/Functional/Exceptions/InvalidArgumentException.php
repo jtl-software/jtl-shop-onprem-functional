@@ -10,13 +10,15 @@
 
 namespace Functional\Exceptions;
 
+use ArrayAccess;
+
 /** @internal */
 class InvalidArgumentException extends \InvalidArgumentException
 {
     /**
-     * @param mixed $callback
+     * @param mixed  $callback
      * @param string $callee
-     * @param integer $parameterPosition
+     * @param int    $parameterPosition
      * @throws InvalidArgumentException
      */
     public static function assertCallback($callback, $callee, $parameterPosition)
@@ -35,13 +37,13 @@ class InvalidArgumentException extends \InvalidArgumentException
             $type = \gettype($callback);
             switch ($type) {
                 case 'array':
-                    $type = 'method';
+                    $type     = 'method';
                     $callback = \array_values($callback);
 
                     $sep = '::';
                     if (\is_object($callback[0])) {
                         $callback[0] = \get_class($callback[0]);
-                        $sep = '->';
+                        $sep         = '->';
                     }
 
                     $callback = \implode($sep, $callback);
@@ -90,18 +92,18 @@ class InvalidArgumentException extends \InvalidArgumentException
     }
 
     /**
-     * @param mixed $propertyName
+     * @param mixed  $propertyName
      * @param string $callee
-     * @param integer $parameterPosition
+     * @param int    $parameterPosition
      * @throws InvalidArgumentException
      */
     public static function assertPropertyName($propertyName, $callee, $parameterPosition)
     {
         if (
-            !\is_string($propertyName) &&
-            !\is_int($propertyName) &&
-            !\is_float($propertyName) &&
-            !\is_null($propertyName)
+            !\is_string($propertyName)
+            && !\is_int($propertyName)
+            && !\is_float($propertyName)
+            && $propertyName !== null
         ) {
             throw new static(
                 \sprintf(
@@ -132,7 +134,7 @@ class InvalidArgumentException extends \InvalidArgumentException
     }
 
     /**
-     * @param mixed $key
+     * @param mixed  $key
      * @param string $callee
      * @throws static
      */
@@ -169,9 +171,9 @@ class InvalidArgumentException extends \InvalidArgumentException
     }
 
     /**
-     * @param boolean $value
+     * @param bool   $value
      * @param string $callee
-     * @param integer $parameterPosition
+     * @param int    $parameterPosition
      * @throws InvalidArgumentException
      */
     public static function assertBoolean($value, $callee, $parameterPosition)
@@ -189,9 +191,9 @@ class InvalidArgumentException extends \InvalidArgumentException
     }
 
     /**
-     * @param mixed $value
+     * @param mixed  $value
      * @param string $callee
-     * @param integer $parameterPosition
+     * @param int    $parameterPosition
      * @throws InvalidArgumentException
      */
     public static function assertInteger($value, $callee, $parameterPosition)
@@ -209,10 +211,10 @@ class InvalidArgumentException extends \InvalidArgumentException
     }
 
     /**
-     * @param integer $value
-     * @param integer $limit
+     * @param int    $value
+     * @param int    $limit
      * @param string $callee
-     * @param integer $parameterPosition
+     * @param int    $parameterPosition
      * @throws InvalidArgumentException
      */
     public static function assertIntegerGreaterThanOrEqual($value, $limit, $callee, $parameterPosition)
@@ -230,10 +232,10 @@ class InvalidArgumentException extends \InvalidArgumentException
     }
 
     /**
-     * @param integer $value
-     * @param integer $limit
+     * @param int    $value
+     * @param int    $limit
      * @param string $callee
-     * @param integer $parameterPosition
+     * @param int    $parameterPosition
      * @throws InvalidArgumentException
      */
     public static function assertIntegerLessThanOrEqual($value, $limit, $callee, $parameterPosition)
@@ -260,10 +262,10 @@ class InvalidArgumentException extends \InvalidArgumentException
     }
 
     /**
-     * @param mixed $collection
+     * @param mixed  $collection
      * @param string $className
      * @param string $callee
-     * @param integer $parameterPosition
+     * @param int    $parameterPosition
      * @throws InvalidArgumentException
      */
     private static function assertCollectionAlike($collection, $className, $callee, $parameterPosition)
@@ -291,7 +293,9 @@ class InvalidArgumentException extends \InvalidArgumentException
     public static function assertPair($pair, $callee, $position): void
     {
         if (!(\is_array($pair) || $pair instanceof ArrayAccess) || !isset($pair[0], $pair[1])) {
-            throw new static(\sprintf('%s() expects paramter %d to be a pair (array with two elements)', $callee, $position));
+            throw new static(
+                \sprintf('%s() expects paramter %d to be a pair (array with two elements)', $callee, $position)
+            );
         }
     }
 

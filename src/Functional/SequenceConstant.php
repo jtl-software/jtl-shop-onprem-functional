@@ -18,7 +18,7 @@ use Traversable;
 /**
  * Returns an infinite, traversable sequence of constant values
  *
- * @param integer $value
+ * @param int $value
  * @return Traversable
  * @no-named-arguments
  */

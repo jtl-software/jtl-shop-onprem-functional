@@ -12,17 +12,12 @@ namespace Functional;
 
 use Functional\Exceptions\MatchException;
 
-use function Functional\head;
-use function Functional\tail;
-use function Functional\if_else;
-
 use const PHP_VERSION_ID;
 
 /**
  * Performs an operation checking for the given conditions
  *
  * @param array $conditions the conditions to check against
- *
  * @return callable|null the function that calls the callable of the first truthy condition
  * @no-named-arguments
  */
@@ -35,7 +30,7 @@ function matching(array $conditions)
             return null;
         }
 
-        list($if, $then) = head($conditions);
+        [$if, $then] = head($conditions);
 
         return if_else($if, $then, matching(tail($conditions)))($value);
     };
@@ -43,7 +38,8 @@ function matching(array $conditions)
 
 
 if (PHP_VERSION_ID < 80000 && !\function_exists('Functional\match')) {
-    eval(<<<'ALIAS'
+    eval(
+    <<<'ALIAS'
 namespace Functional;
 
 /** @no-named-arguments */

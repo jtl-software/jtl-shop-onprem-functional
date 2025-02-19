@@ -17,7 +17,7 @@ use Traversable;
  * Returns an array with the specified keys omitted from the array
  *
  * @param Traversable|array $collection
- * @param array $keys
+ * @param array             $keys
  * @return array
  * @no-named-arguments
  */

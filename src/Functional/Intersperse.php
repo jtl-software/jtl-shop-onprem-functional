@@ -18,7 +18,7 @@ use Traversable;
  * Indices are not preserved.
  *
  * @param Traversable|array $collection
- * @param mixed $glue
+ * @param mixed             $glue
  * @return array
  * @no-named-arguments
  */

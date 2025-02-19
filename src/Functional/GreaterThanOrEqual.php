@@ -19,7 +19,5 @@ namespace Functional;
  */
 function greater_than_or_equal($b)
 {
-    return function ($a) use ($b) {
-        return $a >= $b;
-    };
+    return static fn($a) => $a >= $b;
 }

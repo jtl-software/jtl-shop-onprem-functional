@@ -17,16 +17,16 @@ use Traversable;
  * Returns an array of unique elements
  *
  * @param Traversable|array $collection
- * @param callable $callback
- * @param bool $strict
+ * @param callable|null     $callback
+ * @param bool              $strict
  * @return array
  * @no-named-arguments
  */
-function unique($collection, callable $callback = null, $strict = true)
+function unique($collection, ?callable $callback = null, bool $strict = true)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
-    $indexes = [];
+    $indexes     = [];
     $aggregation = [];
     foreach ($collection as $key => $element) {
         if ($callback) {

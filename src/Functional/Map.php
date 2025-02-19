@@ -18,7 +18,7 @@ use Traversable;
  * Callback arguments will be element, index, collection
  *
  * @param Traversable|array $collection
- * @param callable $callback
+ * @param callable          $callback
  * @return array
  * @no-named-arguments
  */

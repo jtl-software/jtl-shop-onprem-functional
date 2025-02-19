@@ -17,7 +17,7 @@ use Traversable;
  * Groups a collection by index returned by callback.
  *
  * @param Traversable|array $collection
- * @param callable $callback
+ * @param callable          $callback
  * @return array
  * @no-named-arguments
  */

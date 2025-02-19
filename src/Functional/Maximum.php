@@ -17,7 +17,7 @@ use Traversable;
  * Returns the maximum value of a collection
  *
  * @param Traversable|array $collection
- * @return integer|float
+ * @return int|float
  * @no-named-arguments
  */
 function maximum($collection)

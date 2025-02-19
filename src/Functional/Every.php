@@ -18,11 +18,11 @@ use Traversable;
  * Callback arguments will be element, index, collection
  *
  * @param Traversable|array $collection
- * @param callable|null $callback
+ * @param callable|null     $callback
  * @return bool
  * @no-named-arguments
  */
-function every($collection, callable $callback = null)
+function every($collection, ?callable $callback = null)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

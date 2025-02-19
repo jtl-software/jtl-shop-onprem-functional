@@ -18,7 +18,7 @@ use Traversable;
  * empty array if no values were found.
  *
  * @param Traversable|array $collection
- * @param mixed|callable $value
+ * @param mixed|callable    $value
  * @return array
  * @no-named-arguments
  */
