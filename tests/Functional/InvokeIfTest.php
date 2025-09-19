@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\invoke_if;
@@ -30,7 +32,7 @@ class InvokeIfTest extends AbstractTestCase
         $instance = new \stdClass();
         self::assertSame('defaultValue', invoke_if($instance, 'someMethod', [], 'defaultValue'));
         self::assertSame($instance, invoke_if($this, 'someMethod', [], $instance));
-        self::assertNull(invoke_if($this, 'someMethod', [], null));
+        self::assertNull(invoke_if($this, 'someMethod'));
     }
 
     public function method(): string

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -19,9 +21,9 @@ class ContainsTest extends AbstractTestCase
     /** @before */
     public function createTestData(): void
     {
-        $this->list = ['value0', 'value1', 'value2', 2];
+        $this->list         = ['value0', 'value1', 'value2', 2];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3', 'k4' => 2];
+        $this->hash         = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3', 'k4' => 2];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
@@ -34,7 +36,7 @@ class ContainsTest extends AbstractTestCase
         self::assertTrue(contains($this->list, 'value1'));
         self::assertTrue(contains($this->list, 'value2'));
         self::assertTrue(contains($this->list, 2));
-        self::assertFalse(contains($this->list, '2', true));
+        self::assertFalse(contains($this->list, '2'));
         self::assertFalse(contains($this->list, '2'));
         self::assertTrue(contains($this->list, '2', false));
         self::assertFalse(contains($this->list, 'value'));
@@ -43,7 +45,7 @@ class ContainsTest extends AbstractTestCase
         self::assertTrue(contains($this->listIterator, 'value1'));
         self::assertTrue(contains($this->listIterator, 'value2'));
         self::assertTrue(contains($this->listIterator, 2));
-        self::assertFalse(contains($this->listIterator, '2', true));
+        self::assertFalse(contains($this->listIterator, '2'));
         self::assertFalse(contains($this->listIterator, '2'));
         self::assertTrue(contains($this->listIterator, '2', false));
         self::assertFalse(contains($this->listIterator, 'value'));
@@ -52,7 +54,7 @@ class ContainsTest extends AbstractTestCase
         self::assertTrue(contains($this->hash, 'val2'));
         self::assertTrue(contains($this->hash, 'val3'));
         self::assertTrue(contains($this->hash, 2));
-        self::assertFalse(contains($this->hash, '2', true));
+        self::assertFalse(contains($this->hash, '2'));
         self::assertFalse(contains($this->hash, '2'));
         self::assertTrue(contains($this->hash, '2', false));
         self::assertFalse(contains($this->hash, 'value'));
@@ -61,7 +63,7 @@ class ContainsTest extends AbstractTestCase
         self::assertTrue(contains($this->hashIterator, 'val2'));
         self::assertTrue(contains($this->hashIterator, 'val3'));
         self::assertTrue(contains($this->hashIterator, 2));
-        self::assertFalse(contains($this->hashIterator, '2', true));
+        self::assertFalse(contains($this->hashIterator, '2'));
         self::assertFalse(contains($this->hashIterator, '2'));
         self::assertTrue(contains($this->hashIterator, '2', false));
         self::assertFalse(contains($this->hashIterator, 'value'));

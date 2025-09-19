@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\sequence_exponential;
@@ -35,7 +37,7 @@ class SequenceExponentialTest extends AbstractTestCase
     public function testStartArgumentMustBePositiveInteger(): void
     {
         $this->expectArgumentError(
-            'Functional\sequence_exponential() expects parameter 1 to be an integer greater than or equal to 1'
+            'Functional\sequence_exponential() expects parameter 1 to be an int greater than or equal to 1'
         );
         sequence_exponential(-1, 1);
     }
@@ -43,7 +45,7 @@ class SequenceExponentialTest extends AbstractTestCase
     public function testGrowthArgumentMustBePositiveInteger(): void
     {
         $this->expectArgumentError(
-            'Functional\sequence_exponential() expects parameter 2 to be an integer greater than or equal to 1'
+            'Functional\sequence_exponential() expects parameter 2 to be an int greater than or equal to 1'
         );
         sequence_exponential(1, 0);
     }
@@ -51,7 +53,7 @@ class SequenceExponentialTest extends AbstractTestCase
     public function testGrowthArgumentMustBePositiveIntegerLessThan100(): void
     {
         $this->expectArgumentError(
-            'Functional\sequence_exponential() expects parameter 2 to be an integer less than or equal to 100'
+            'Functional\sequence_exponential() expects parameter 2 to be an int less than or equal to 100'
         );
         sequence_exponential(1, 101);
     }

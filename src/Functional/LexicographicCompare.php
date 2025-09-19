@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -15,10 +17,10 @@ namespace Functional;
  * $a is respectively less than, equal to, or greater than $b.
  *
  * @param mixed $b
- * @return \Closure(mixed)
+ * @return \Closure
  * @no-named-arguments
  */
-function lexicographic_compare($b)
+function lexicographic_compare($b): \Closure
 {
-    return static fn($a) => $a <=> $b;
+    return static fn($a): int => $a <=> $b;
 }

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -17,16 +19,15 @@ use Traversable;
  * Returns the minimum value of a collection
  *
  * @param Traversable|array $collection
- * @return int|float
  * @no-named-arguments
  */
-function minimum($collection)
+function minimum($collection): float|int|string|null
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
     $min = null;
 
-    foreach ($collection as $index => $element) {
+    foreach ($collection as $element) {
         if (!\is_numeric($element)) {
             continue;
         }

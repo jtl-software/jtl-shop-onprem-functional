@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use BadMethodCallException;
@@ -23,10 +25,9 @@ function testfunc(): string
 
 class MemoizeTest extends AbstractTestCase
 {
-    private static $invocation = 0;
+    private static int $invocation = 0;
 
-    /** @var MockObject */
-    private $callback;
+    private MockObject $callback;
 
     public static function invoke($name): int
     {
@@ -54,8 +55,7 @@ class MemoizeTest extends AbstractTestCase
 
     public function testMemoizeSimpleObjectCall(): void
     {
-        $this->callback
-            ->expects(self::once())
+        $this->callback->expects(self::once())
             ->method('execute')
             ->willReturn('VALUE1');
 
@@ -73,16 +73,14 @@ class MemoizeTest extends AbstractTestCase
 
     public function testMemoizeStaticMethodCall(): void
     {
-        self::assertSame('STATIC METHOD VALUE1', memoize([MemoizeTest::class, 'call']));
-        self::assertSame('STATIC METHOD VALUE1', memoize([MemoizeTest::class, 'call']));
-        self::assertSame('STATIC METHOD VALUE1', memoize([MemoizeTest::class, 'call']));
+        self::assertSame('STATIC METHOD VALUE1', memoize([__CLASS__, 'call']));
+        self::assertSame('STATIC METHOD VALUE1', memoize([__CLASS__, 'call']));
+        self::assertSame('STATIC METHOD VALUE1', memoize([__CLASS__, 'call']));
     }
 
     public function testMemoizeClosureCall(): void
     {
-        $closure = function () {
-            return 'CLOSURE VALUE' . MemoizeTest::invoke('Closure');
-        };
+        $closure = fn(): string => 'CLOSURE VALUE' . MemoizeTest::invoke('Closure');
         self::assertSame('CLOSURE VALUE1', memoize($closure));
         self::assertSame('CLOSURE VALUE1', memoize($closure));
         self::assertSame('CLOSURE VALUE1', memoize($closure));
@@ -126,13 +124,13 @@ class MemoizeTest extends AbstractTestCase
         try {
             memoize([$this->callback, 'execute']);
             self::fail('Expected failure');
-        } catch (BadMethodCallException $e) {
+        } catch (BadMethodCallException) {
         }
 
         try {
             memoize([$this->callback, 'execute']);
             self::fail('Expected failure');
-        } catch (BadMethodCallException $e) {
+        } catch (BadMethodCallException) {
         }
     }
 
@@ -145,7 +143,7 @@ class MemoizeTest extends AbstractTestCase
         memoize([$this->callback, 'execute']);
         memoize([$this->callback, 'execute']);
 
-        self::assertNull(memoize(null));
+        self::assertNull(memoize());
 
         memoize([$this->callback, 'execute']);
         memoize([$this->callback, 'execute']);
@@ -167,14 +165,10 @@ class MemoizeTest extends AbstractTestCase
     private static function createFn(int $id, int $number): callable
     {
         return new class ($id, $number) {
-            private $id;
-            private $expectedInvocations;
-            private $actualInvocations = 0;
+            private int $actualInvocations = 0;
 
-            public function __construct(int $id, int $expectedInvocations)
+            public function __construct(private int $id, private int $expectedInvocations)
             {
-                $this->id = $id;
-                $this->expectedInvocations = $expectedInvocations;
             }
 
             public function getId(): int

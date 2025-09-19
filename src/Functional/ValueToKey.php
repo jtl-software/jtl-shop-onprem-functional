@@ -8,58 +8,48 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
 use Traversable;
 use WeakReference;
 
-use const PHP_VERSION_ID;
-
 /**
  * @no-named-arguments
  */
-function value_to_key(...$any)
+function value_to_key(...$any): string
 {
     /** @var object[]|WeakReference[] $objectReferences */
     static $objectReferences = [];
 
     static $objectToRef = null;
     if (!$objectToRef) {
-        $objectToRef = static function ($value) use (&$objectReferences) {
+        $objectToRef = static function ($value) use (&$objectReferences): string {
             $hash = \spl_object_hash($value);
             /**
              * spl_object_hash() will return the same hash twice in a single request if an object goes out of scope
              * and is destructed.
              */
-            if (PHP_VERSION_ID >= 70400) {
-                /**
-                 * For PHP >=7.4, we keep a weak reference to the relevant object that we use for hashing. Once the
-                 * object gets out of scope, the weak ref will no longer return the object, that’s how we know we
-                 * have a collision and increment a version in the collisions array.
-                 */
-                /** @var int[] $collisions */
-                static $collisions = [];
+            /**
+             * For PHP >=7.4, we keep a weak reference to the relevant object that we use for hashing. Once the
+             * object gets out of scope, the weak ref will no longer return the object, that’s how we know we
+             * have a collision and increment a version in the collisions array.
+             */
+            /** @var int[] $collisions */
+            static $collisions = [];
 
-                if (isset($objectReferences[$hash])) {
-                    if ($objectReferences[$hash]->get() === null) {
-                        $collisions[$hash]       = ($collisions[$hash] ?? 0) + 1;
-                        $objectReferences[$hash] = WeakReference::create($value);
-                    }
-                } else {
+            if (isset($objectReferences[$hash])) {
+                if ($objectReferences[$hash]->get() === null) {
+                    $collisions[$hash]       = ($collisions[$hash] ?? 0) + 1;
                     $objectReferences[$hash] = WeakReference::create($value);
                 }
-
-                $key = \get_class($value) . ':' . $hash . ':' . ($collisions[$hash] ?? 0);
             } else {
-                /**
-                 * For PHP < 7.4 we keep a static reference to the object so that cannot accidentally go out of
-                 * scope and mess with the object hashes
-                 */
-                $objectReferences[$hash] = $value;
-                $key                     = \get_class($value) . ':' . $hash;
+                $objectReferences[$hash] = WeakReference::create($value);
             }
-            return $key;
+
+            return \get_class($value) . ':' . $hash . ':' . ($collisions[$hash] ?? 0);
         };
     }
 

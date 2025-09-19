@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\ratio;
@@ -16,8 +18,6 @@ abstract class AbstractPartialTestCase extends AbstractTestCase
 {
     protected function ratio(): callable
     {
-        return static function ($initial, ...$args) {
-            return ratio($args, $initial);
-        };
+        return static fn($initial, ...$args) => ratio($args, $initial);
     }
 }

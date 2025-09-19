@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\compare_on;
@@ -26,8 +28,8 @@ class CompareOnTest extends AbstractTestCase
 
     public function testCompareWithReducer(): void
     {
-        $comparator = compare_on('strcmp', const_function(1));
+        $comparator = compare_on('strcmp', const_function('1'));
 
-        self::assertSame(0, $comparator(0, 1));
+        self::assertSame(0, $comparator('0', '1'));
     }
 }

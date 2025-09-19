@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -17,6 +19,9 @@ use function Functional\select;
 
 class SelectTest extends AbstractTestCase
 {
+    /**
+     * @return array<string[]>
+     */
     public function getAliases(): array
     {
         return [
@@ -28,9 +33,9 @@ class SelectTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value', 'wrong', 'value'];
+        $this->list         = ['value', 'wrong', 'value'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'value', 'k2' => 'wrong', 'k3' => 'value'];
+        $this->hash         = ['k1' => 'value', 'k2' => 'wrong', 'k3' => 'value'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
@@ -42,7 +47,7 @@ class SelectTest extends AbstractTestCase
         $callback = function ($v, $k, $collection) {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
 
-            return $v == 'value' && \strlen($k) > 0;
+            return $v === 'value' && \strlen((string)$k) > 0;
         };
         self::assertSame(['value', 2 => 'value'], $functionName($this->list, $callback));
         self::assertSame(['value', 2 => 'value'], $functionName($this->listIterator, $callback));

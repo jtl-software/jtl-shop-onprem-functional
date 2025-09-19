@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -17,10 +19,9 @@ use Traversable;
  * Returns the maximum value of a collection
  *
  * @param Traversable|array $collection
- * @return int|float
  * @no-named-arguments
  */
-function maximum($collection)
+function maximum($collection): float|int|string|null
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

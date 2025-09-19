@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ErrorException;
@@ -21,8 +23,8 @@ class ErrorToExceptionTest extends AbstractTestCase
 {
     public function testErrorIsThrownAsException(): void
     {
-        $origFn = function () {
-            \trigger_error('Some error', E_USER_ERROR);
+        $origFn = function (): void {
+            \trigger_error('Some error');
         };
 
         $fn = error_to_exception($origFn);
@@ -43,7 +45,7 @@ class ErrorToExceptionTest extends AbstractTestCase
     public function testExceptionsAreHandledTransparently(): void
     {
         $expectedException = new RuntimeException();
-        $fn = error_to_exception(
+        $fn                = error_to_exception(
             function () use ($expectedException) {
                 throw $expectedException;
             }
@@ -58,7 +60,7 @@ class ErrorToExceptionTest extends AbstractTestCase
     {
         $errorMessage = null;
         \set_error_handler(
-            static function ($level, $message) use (&$errorMessage) {
+            static function ($level, $message) use (&$errorMessage): void {
                 $errorMessage = $message;
             }
         );
@@ -71,7 +73,7 @@ class ErrorToExceptionTest extends AbstractTestCase
         try {
             $fn();
             self::fail('ErrorException expected');
-        } catch (ErrorException $e) {
+        } catch (ErrorException) {
             self::assertNull($errorMessage);
         }
 

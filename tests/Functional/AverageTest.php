@@ -8,10 +8,12 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
-use stdClass;
 use ArrayIterator;
+use stdClass;
 use Traversable;
 
 use function Functional\average;
@@ -19,45 +21,45 @@ use function Functional\average;
 class AverageTest extends AbstractTestCase
 {
     /** @var array */
-    private $list2;
+    private array $list2;
 
     /** @var Traversable */
-    private $listIterator2;
+    private Traversable $listIterator2;
 
     /** @var array */
-    private $list3;
+    private array $list3;
 
     /** @var Traversable */
-    private $listIterator3;
+    private Traversable $listIterator3;
 
     /** @var array */
-    private $hash2;
+    private array $hash2;
 
     /** @var Traversable */
-    private $hashIterator2;
+    private Traversable $hashIterator2;
 
     /** @var array */
-    private $hash3;
+    private array $hash3;
 
     /** @var Traversable */
-    private $hashIterator3;
+    private Traversable $hashIterator3;
 
     /** @before */
     public function createTestData(): void
     {
-        $this->hash = ['f0' => 12, 'f1' => 2, 'f3' => true, 'f4' => false, 'f5' => 'str', 'f6' => [], 'f7' => new stdClass(), 'f8' => 1];
+        $this->hash         = ['f0' => 12, 'f1' => 2, 'f3' => true, 'f4' => false, 'f5' => 'str', 'f6' => [], 'f7' => new stdClass(), 'f8' => 1];
         $this->hashIterator = new ArrayIterator($this->hash);
-        $this->list = \array_values($this->hash);
+        $this->list         = \array_values($this->hash);
         $this->listIterator = new ArrayIterator($this->list);
 
-        $this->hash2 = ['f0' => 1.0, 'f1' => 0.5, 'f3' => true, 'f4' => false, 'f5' => 1];
+        $this->hash2         = ['f0' => 1.0, 'f1' => 0.5, 'f3' => true, 'f4' => false, 'f5' => 1];
         $this->hashIterator2 = new ArrayIterator($this->hash2);
-        $this->list2 = \array_values($this->hash2);
+        $this->list2         = \array_values($this->hash2);
         $this->listIterator2 = new ArrayIterator($this->list2);
 
-        $this->hash3 = ['f0' => [], 'f1' => new stdClass(), 'f2' => null, 'f3' => 'foo'];
+        $this->hash3         = ['f0' => [], 'f1' => new stdClass(), 'f2' => null, 'f3' => 'foo'];
         $this->hashIterator3 = new ArrayIterator($this->hash3);
-        $this->list3 = \array_values($this->hash3);
+        $this->list3         = \array_values($this->hash3);
         $this->listIterator3 = new ArrayIterator($this->list3);
     }
 

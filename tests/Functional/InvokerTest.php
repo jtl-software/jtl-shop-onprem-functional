@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\invoker;
@@ -23,7 +25,7 @@ class InvokerTest extends AbstractTestCase
     public function testInvokerWithArguments(): void
     {
         $arguments = [1, 2, 3];
-        $fn = invoker('argumentMethod', $arguments);
+        $fn        = invoker('argumentMethod', $arguments);
         self::assertSame($arguments, $fn($this));
     }
 
@@ -35,13 +37,9 @@ class InvokerTest extends AbstractTestCase
 
     public function testInvalidMethod(): void
     {
-        if (!\class_exists('Error')) {
-            self::markTestSkipped('Requires PHP 7');
-        }
-
         $fn = invoker('undefinedMethod');
 
-        $this->expectException('Error', 'Call to undefined method Functional\\Tests\\InvokerTest::undefinedMethod');
+        $this->expectException('Error');
         $fn($this);
     }
 

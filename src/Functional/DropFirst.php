@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -21,22 +23,19 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function drop_first($collection, callable $callback)
+function drop_first($collection, callable $callback): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
     $result = [];
-
-    $drop = true;
+    $drop   = true;
     foreach ($collection as $index => $element) {
         if ($drop) {
             if ($callback($element, $index, $collection)) {
                 continue;
             }
-
             $drop = false;
         }
-
         $result[$index] = $element;
     }
 

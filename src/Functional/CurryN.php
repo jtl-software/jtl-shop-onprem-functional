@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -22,7 +24,7 @@ namespace Functional;
  * @return callable a curryied version of the given function
  * @no-named-arguments
  */
-function curry_n($count, callable $function)
+function curry_n($count, callable $function): callable
 {
     $accumulator = static function (array $arguments) use ($count, $function, &$accumulator) {
         return static function (...$newArguments) use ($count, $function, $arguments, $accumulator) {

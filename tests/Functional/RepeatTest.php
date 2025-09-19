@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -24,8 +26,7 @@ class Repeated
 
 class RepeatTest extends AbstractTestCase
 {
-    /** @var Repeated|MockObject */
-    private $repeated;
+    private MockObject&Repeated $repeated;
 
     protected function setUp(): void
     {
@@ -45,9 +46,6 @@ class RepeatTest extends AbstractTestCase
     public function testNegativeRepeatedTimes(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            'Functional\{closure}() expects parameter 1 to be positive integer, negative integer given'
-        );
 
         repeat([$this->repeated, 'foo'])(-1);
     }

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -17,7 +19,7 @@ namespace Functional;
  * @return callable
  * @no-named-arguments
  */
-function const_function($value)
+function const_function(mixed $value): callable
 {
-    return static fn() => $value;
+    return static fn(): mixed => $value;
 }

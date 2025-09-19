@@ -8,13 +8,14 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\partial_method;
 
 class PartialMethodTest extends AbstractPartialTestCase
 {
-
     public function testWithNoArgs(): void
     {
         $method = partial_method('execute');
@@ -43,12 +44,6 @@ class PartialMethodTest extends AbstractPartialTestCase
     {
         $method = partial_method('undefinedMethod', [], 'defaultValue');
         self::assertSame('defaultValue', $method('non-object'));
-    }
-
-    public function testWithInvalidMethodName(): void
-    {
-        $this->expectArgumentError('Functional\partial_method() expects parameter 1 to be string, integer given');
-        partial_method(1);
     }
 
     public function execute($arg1 = null, $arg2 = null): string

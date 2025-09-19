@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -21,9 +23,9 @@ class ZipTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value', 'value'];
+        $this->list         = ['value', 'value'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'val1', 'k2' => 'val2'];
+        $this->hash         = ['k1' => 'val1', 'k2' => 'val2'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
@@ -57,14 +59,14 @@ class ZipTest extends AbstractTestCase
             $result,
             zip(
                 ['foo' => 1, 'bar' => 2, true],
-                ['foo' => -1, 'bar' => -2, false, "ignore"]
+                ['foo' => -1, 'bar' => -2, false, 'ignore']
             )
         );
         self::assertSame(
             $result,
             zip(
                 new ArrayIterator(['foo' => 1, 'bar' => 2, true]),
-                new ArrayIterator(['foo' => -1, 'bar' => -2, false, "ignore"])
+                new ArrayIterator(['foo' => -1, 'bar' => -2, false, 'ignore'])
             )
         );
     }
@@ -79,9 +81,7 @@ class ZipTest extends AbstractTestCase
                 [1, 2, 3],
                 [-1, -2, -3],
                 [true, false],
-                function ($one, $two, $three, $four) {
-                    return $one . $two . $three . $four;
-                }
+                fn($one, $two, $three, $four) => $one . $two . $three . $four
             )
         );
         self::assertSame(
@@ -91,18 +91,16 @@ class ZipTest extends AbstractTestCase
                 new ArrayIterator([1, 2, 3]),
                 new ArrayIterator([-1, -2, -3]),
                 new ArrayIterator([true, false]),
-                function ($one, $two, $three, $four) {
-                    return $one . $two . $three . $four;
-                }
+                fn($one, $two, $three, $four): string => $one . $two . $three . $four
             )
         );
     }
 
     public function testZippingArraysWithVariousElements(): void
     {
-        $object = new stdClass();
+        $object   = new stdClass();
         $resource = \stream_context_create();
-        $result = [
+        $result   = [
             [[1], $object, [2]],
             [null, 'foo', null],
             [$resource, null, 2]
@@ -122,9 +120,16 @@ class ZipTest extends AbstractTestCase
     {
         self::assertSame([], zip([]));
         self::assertSame([], zip([], []));
-        self::assertSame([], zip([], [], function () {
-            throw new BadFunctionCallException('Should not be called');
-        }));
+        self::assertSame(
+            [],
+            zip(
+                [],
+                [],
+                function (): void {
+                    throw new BadFunctionCallException('Should not be called');
+                }
+            )
+        );
     }
 
     public function testPassNoCollectionAsFirstParam(): void

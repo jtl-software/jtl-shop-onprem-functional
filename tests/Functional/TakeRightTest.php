@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -21,20 +23,20 @@ class TakeRightTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $this->list = ['foo', 'bar', 'baz', 'qux'];
+        $this->list         = ['foo', 'bar', 'baz', 'qux'];
         $this->listIterator = new ArrayIterator($this->list);
     }
 
     public function test(): void
     {
-        each([$this->list, $this->listIterator], function ($list) {
+        each([$this->list, $this->listIterator], function ($list): void {
             $this->assertSame(['qux'], take_right($list, 1));
             $this->assertSame(['baz', 'qux'], take_right($list, 2));
             $this->assertSame(['foo', 'bar', 'baz', 'qux'], take_right($list, 10));
             $this->assertSame([], take_right($list, 0));
 
             $this->expectExceptionMessage(
-                'Functional\take_right() expects parameter 2 to be positive integer, negative integer given'
+                'Functional\take_right() expects parameter 2 to be positive int, negative int given'
             );
             take_right($list, -1);
         });
@@ -42,7 +44,7 @@ class TakeRightTest extends AbstractTestCase
 
     public function testPreserveKeys(): void
     {
-        each([$this->list, $this->listIterator], function ($list) {
+        each([$this->list, $this->listIterator], function ($list): void {
             $this->assertSame([3 => 'qux'], take_right($list, 1, true));
             $this->assertSame([2 => 'baz', 3 => 'qux'], take_right($list, 2, true));
 

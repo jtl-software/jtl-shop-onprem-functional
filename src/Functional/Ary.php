@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -25,8 +27,7 @@ function ary(callable $func, int $count): callable
         if ($count > 0) {
             return $func(...take_left($args, $count));
         }
-        if ($count < 0) {
-            return $func(...take_right($args, -$count));
-        }
+
+        return $func(...take_right($args, -$count));
     };
 }

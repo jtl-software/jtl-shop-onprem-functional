@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function unique($collection, ?callable $callback = null, bool $strict = true)
+function unique($collection, ?callable $callback = null, bool $strict = true): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

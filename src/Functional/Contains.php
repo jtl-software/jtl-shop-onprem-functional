@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -18,16 +20,14 @@ use Traversable;
  * true values will be compared in strict mode
  *
  * @param Traversable|array $collection
- * @param mixed             $value
- * @param bool              $strict
- * @return bool
  * @no-named-arguments
  */
-function contains($collection, $value, $strict = true)
+function contains($collection, mixed $value, bool $strict = true): bool
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
     foreach ($collection as $element) {
+        /** @noinspection TypeUnsafeComparisonInspection */
         if ($value === $element || (!$strict && $value == $element)) {
             return true;
         }

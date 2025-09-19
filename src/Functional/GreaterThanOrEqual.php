@@ -8,16 +8,18 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
  * Returns true if $a is greater than or equal to $b.
  *
  * @param mixed $b
- * @return \Closure(mixed)
+ * @return \Closure
  * @no-named-arguments
  */
-function greater_than_or_equal($b)
+function greater_than_or_equal(mixed $b): \Closure
 {
-    return static fn($a) => $a >= $b;
+    return static fn(mixed $a): bool => $a >= $b;
 }

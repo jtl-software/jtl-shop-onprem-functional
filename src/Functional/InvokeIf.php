@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -21,7 +23,7 @@ namespace Functional;
  * @return mixed
  * @no-named-arguments
  */
-function invoke_if($object, $methodName, array $methodArguments = [], $defaultValue = null)
+function invoke_if(mixed $object, string $methodName, array $methodArguments = [], mixed $defaultValue = null): mixed
 {
     $callback = [$object, $methodName];
     if (\is_callable($callback)) {

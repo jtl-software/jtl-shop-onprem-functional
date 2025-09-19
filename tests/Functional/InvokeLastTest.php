@@ -8,31 +8,37 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
+
+use Traversable;
 
 use function Functional\invoke_last;
 
 class InvokeLastTest extends AbstractTestCase
 {
-    private $iteratorVeryLastNotCallable;
+    private Traversable $iteratorVeryLastNotCallable;
 
-    private $arrayVeryLastNotCallable;
+    /** @var array<mixed> */
+    private array $arrayVeryLastNotCallable;
 
-    private $keyIterator;
+    private Traversable $keyIterator;
 
-    private $keyArray;
+    /** @var array<string, mixed> */
+    private array $keyArray;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = [null, null, $this];
+        $this->list         = [null, null, $this];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->keyArray = ['k1' => null, 'k2' => $this];
-        $this->keyIterator = new ArrayIterator(['k1' => null, 'k2' => $this]);
+        $this->keyArray     = ['k1' => null, 'k2' => $this];
+        $this->keyIterator  = new ArrayIterator(['k1' => null, 'k2' => $this]);
 
-        $this->arrayVeryLastNotCallable = [null, null, $this, null];
+        $this->arrayVeryLastNotCallable    = [null, null, $this, null];
         $this->iteratorVeryLastNotCallable = new ArrayIterator($this->arrayVeryLastNotCallable);
     }
 
@@ -57,12 +63,6 @@ class InvokeLastTest extends AbstractTestCase
     {
         $this->expectArgumentError('Functional\invoke_last() expects parameter 1 to be array or instance of Traversable');
         invoke_last('invalidCollection', 'method');
-    }
-
-    public function testPassNoPropertyName(): void
-    {
-        $this->expectArgumentError('Functional\invoke_last() expects parameter 2 to be string');
-        invoke_last($this->list, new \stdClass());
     }
 
     public function testException(): void

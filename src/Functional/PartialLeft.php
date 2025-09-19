@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -20,7 +22,7 @@ namespace Functional;
  * @return callable
  * @no-named-arguments
  */
-function partial_left(callable $callback, ...$arguments)
+function partial_left(callable $callback, ...$arguments): callable
 {
     return static fn(...$innerArguments) => $callback(...\array_merge($arguments, $innerArguments));
 }

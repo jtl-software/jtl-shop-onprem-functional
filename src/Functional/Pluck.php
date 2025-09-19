@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use ArrayAccess;
@@ -18,11 +20,11 @@ use Traversable;
  * Extract a property from a collection of objects.
  *
  * @param Traversable|array $collection
- * @param string            $propertyName
+ * @param mixed             $propertyName
  * @return array
  * @no-named-arguments
  */
-function pluck($collection, $propertyName)
+function pluck($collection, mixed $propertyName): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
     InvalidArgumentException::assertPropertyName($propertyName, __FUNCTION__, 2);

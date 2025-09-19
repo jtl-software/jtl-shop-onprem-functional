@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Sequences;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -16,19 +18,15 @@ use Iterator;
 /** @internal */
 class ExponentialSequence implements Iterator
 {
-    /** @var int */
-    private $start;
+    private int $start;
 
-    /** @var int */
-    private $percentage;
+    private int $percentage;
 
-    /** @var int */
-    private $value;
+    private int $value;
 
-    /** @var int */
-    private $times;
+    private int $times;
 
-    public function __construct($start, $percentage)
+    public function __construct(int $start, int $percentage)
     {
         InvalidArgumentException::assertIntegerGreaterThanOrEqual($start, 1, __METHOD__, 1);
         InvalidArgumentException::assertIntegerGreaterThanOrEqual($percentage, 1, __METHOD__, 2);
@@ -38,7 +36,7 @@ class ExponentialSequence implements Iterator
         $this->percentage = $percentage;
     }
 
-    public function current(): mixed
+    public function current(): int
     {
         return $this->value;
     }
@@ -49,7 +47,7 @@ class ExponentialSequence implements Iterator
         $this->times++;
     }
 
-    public function key(): mixed
+    public function key(): null
     {
         return null;
     }

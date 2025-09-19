@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -27,6 +29,7 @@ function tail_recursion(callable $fn): callable
     return static function (...$args) use (&$fn, &$underCall, &$queue) {
         $result  = null;
         $queue[] = $args;
+        /** @phpstan-ignore booleanNot.alwaysTrue */
         if (!$underCall) {
             $underCall = true;
             while ($head = \array_shift($queue)) {
@@ -34,6 +37,7 @@ function tail_recursion(callable $fn): callable
             }
             $underCall = false;
         }
+
         return $result;
     };
 }

@@ -8,10 +8,12 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
-use function Functional\flip;
 use function Functional\filter;
+use function Functional\flip;
 use function Functional\id;
 
 class FlipTest extends AbstractTestCase
@@ -31,9 +33,9 @@ class FlipTest extends AbstractTestCase
 
     public function testFlippedFilter(): void
     {
-        $data = [1, 2, 3, 4];
-        $getEven = function ($number) {
-            return $number % 2 == 0;
+        $data          = [1, 2, 3, 4];
+        $getEven       = function ($number): bool {
+            return $number % 2 === 0;
         };
         $flippedFilter = flip('Functional\filter');
 

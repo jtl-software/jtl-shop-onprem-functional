@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -20,7 +22,7 @@ use Traversable;
  * @return null|float|int
  * @no-named-arguments
  */
-function average($collection)
+function average($collection): float|int|null
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

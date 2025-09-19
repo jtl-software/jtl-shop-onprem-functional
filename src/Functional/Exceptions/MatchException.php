@@ -8,24 +8,26 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Exceptions;
 
 /** @internal */
 class MatchException extends InvalidArgumentException
 {
-    public static function assert(array $conditions, $callee)
+    public static function assert(array $conditions, $callee): void
     {
         foreach ($conditions as $key => $condition) {
-            static::assertArray($key, $condition, $callee);
-            static::assertLength($key, $condition, $callee);
-            static::assertCallables($key, $condition, $callee);
+            self::assertArray($key, $condition, $callee);
+            self::assertLength($key, $condition, $callee);
+            self::assertCallables($key, $condition, $callee);
         }
     }
 
-    private static function assertArray($key, $condition, $callee)
+    private static function assertArray($key, $condition, $callee): void
     {
         if (!\is_array($condition)) {
-            throw new static(
+            throw new self(
                 \sprintf(
                     '%s() expects condition at key %d to be array, %s given',
                     $callee,
@@ -36,10 +38,10 @@ class MatchException extends InvalidArgumentException
         }
     }
 
-    private static function assertLength($key, $condition, $callee)
+    private static function assertLength($key, $condition, $callee): void
     {
         if (\count($condition) < 2) {
-            throw new static(
+            throw new self(
                 \sprintf(
                     '%s() expects size of condition at key %d to be greater than or equals to 2, %d given',
                     $callee,
@@ -50,10 +52,10 @@ class MatchException extends InvalidArgumentException
         }
     }
 
-    private static function assertCallables($key, $condition, $callee)
+    private static function assertCallables($key, $condition, $callee): void
     {
         if (!\is_callable($condition[0]) || !\is_callable($condition[1])) {
-            throw new static(
+            throw new self(
                 \sprintf(
                     '%s() expects first two items of condition at key %d to be callables',
                     $callee,

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -17,7 +19,7 @@ namespace Functional;
  * @return callable
  * @no-named-arguments
  */
-function identical($b)
+function identical(mixed $b): callable
 {
-    return static fn($a) => $a === $b;
+    return static fn(mixed $a): bool => $a === $b;
 }

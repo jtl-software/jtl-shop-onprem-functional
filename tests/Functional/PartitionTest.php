@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -20,17 +22,17 @@ class PartitionTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value1', 'value2', 'value3'];
+        $this->list         = ['value1', 'value2', 'value3'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3'];
+        $this->hash         = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
     public function test(): void
     {
-        $fn = function ($v, $k, $collection) {
+        $fn = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
-            return \is_int($k) ? ($k % 2 == 0) : ($v[3] % 2 == 0);
+            return \is_int($k) ? ($k % 2 === 0) : ($v[3] % 2 === 0);
         };
         self::assertSame([[0 => 'value1', 2 => 'value3'], [1 => 'value2']], partition($this->list, $fn));
         self::assertSame([[0 => 'value1', 2 => 'value3'], [1 => 'value2']], partition($this->listIterator, $fn));
@@ -40,12 +42,12 @@ class PartitionTest extends AbstractTestCase
 
     public function testMultiFn(): void
     {
-        $fn1 = function ($v, $k, $collection) {
+        $fn1 = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
             return \is_int($k) ? ($k === 1) : ($v[3] === '2');
         };
 
-        $fn2 = function ($v, $k, $collection) {
+        $fn2 = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
             return \is_int($k) ? ($k === 2) : ($v[3] === '3');
         };

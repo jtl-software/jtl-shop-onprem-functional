@@ -8,25 +8,27 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use AppendIterator;
 use ArrayIterator;
 use Functional\Exceptions\InvalidArgumentException;
 use InfiniteIterator;
-use Traversable;
 
 /**
  * Retry a callback until it returns a truthy value or the timeout (in microseconds) is reached
  *
- * @param callable         $callback
- * @param int              $timeout Timeout in microseconds
- * @param Traversable|null $delaySequence Default: no delay between calls
+ * @param callable       $callback
+ * @param int            $timeout Timeout in microseconds
+ * @param \Iterator|null $delaySequence Default: no delay between calls
  * @return bool
  * @no-named-arguments
  * @throws InvalidArgumentException
+ * @noinspection PhpInconsistentReturnPointsInspection
  */
-function poll(callable $callback, $timeout, ?Traversable $delaySequence = null)
+function poll(callable $callback, int $timeout, ?\Iterator $delaySequence = null)
 {
     InvalidArgumentException::assertIntegerGreaterThanOrEqual($timeout, 0, __FUNCTION__, 2);
 
@@ -39,7 +41,7 @@ function poll(callable $callback, $timeout, ?Traversable $delaySequence = null)
     $delays->append(new InfiniteIterator(new ArrayIterator([0])));
 
     $limit = \microtime(true) + ($timeout / 100000);
-
+    /** @phpstan-ignore return.missing */
     foreach ($delays as $delay) {
         $value = $callback($retry, $delay);
 

@@ -8,17 +8,14 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\concat;
 
 class ConcatTest extends AbstractTestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function test(): void
     {
         self::assertSame('foobar', concat('foo', 'bar'));

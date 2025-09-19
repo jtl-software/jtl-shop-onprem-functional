@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -17,39 +19,39 @@ use Traversable;
 class FalseTest extends AbstractTestCase
 {
     /** @var false[] */
-    private $trueArray;
+    private array $trueArray;
 
     /** @var Traversable */
-    private $trueIterator;
+    private Traversable $trueIterator;
 
     /** @var false[] */
-    private $trueHash;
+    private array $trueHash;
 
     /** @var Traversable */
-    private $trueHashIterator;
+    private Traversable $trueHashIterator;
 
     /** @var array */
-    private $falseArray;
+    private array $falseArray;
 
     /** @var Traversable */
-    private $falseIterator;
+    private Traversable $falseIterator;
 
     /** @var array */
-    private $falseHash;
+    private array $falseHash;
 
     /** @var Traversable */
-    private $falseHashIterator;
+    private Traversable $falseHashIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->trueArray = [false, false, false, false];
-        $this->trueIterator = new ArrayIterator($this->trueArray);
-        $this->trueHash = ['k1' => false, 'k2' => false, 'k3' => false];
-        $this->trueHashIterator = new ArrayIterator($this->trueHash);
-        $this->falseArray = [false, 0, false, 'foo', [], (object)[]];
-        $this->falseIterator = new ArrayIterator($this->falseArray);
-        $this->falseHash = ['k1' => false, 'k2' => 0, 'k3' => false];
+        $this->trueArray         = [false, false, false, false];
+        $this->trueIterator      = new ArrayIterator($this->trueArray);
+        $this->trueHash          = ['k1' => false, 'k2' => false, 'k3' => false];
+        $this->trueHashIterator  = new ArrayIterator($this->trueHash);
+        $this->falseArray        = [false, 0, false, 'foo', [], (object)[]];
+        $this->falseIterator     = new ArrayIterator($this->falseArray);
+        $this->falseHash         = ['k1' => false, 'k2' => 0, 'k3' => false];
         $this->falseHashIterator = new ArrayIterator($this->falseHash);
     }
 

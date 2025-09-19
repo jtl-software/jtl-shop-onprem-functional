@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -18,7 +20,7 @@ class IntersperseTest extends AbstractTestCase
 {
     public function test(): void
     {
-        $array = ['a', 'b', 'c'];
+        $array       = ['a', 'b', 'c'];
         $traversable = new ArrayIterator($array);
 
         $expected = ['a', '-', 'b', '-', 'c'];

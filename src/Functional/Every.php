@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ use Traversable;
  * @return bool
  * @no-named-arguments
  */
-function every($collection, ?callable $callback = null)
+function every($collection, ?callable $callback = null): bool
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

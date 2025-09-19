@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -20,17 +22,17 @@ class RejectTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value', 'wrong', 'value'];
+        $this->list         = ['value', 'wrong', 'value'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'value', 'k2' => 'wrong', 'k3' => 'value'];
+        $this->hash         = ['k1' => 'value', 'k2' => 'wrong', 'k3' => 'value'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
     public function test(): void
     {
-        $fn = function ($v, $k, $collection) {
+        $fn = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
-            return $v == 'wrong' && \strlen($k) > 0;
+            return $v === 'wrong' && \strlen((string)$k) > 0;
         };
         self::assertSame([0 => 'value', 2 => 'value'], reject($this->list, $fn));
         self::assertSame([0 => 'value', 2 => 'value'], reject($this->listIterator, $fn));

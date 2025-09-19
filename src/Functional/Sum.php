@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -17,11 +19,9 @@ use Traversable;
  * Takes a collection and returns the sum of the elements
  *
  * @param Traversable|array $collection
- * @param int|float         $initial
- * @return int|float
  * @no-named-arguments
  */
-function sum($collection, $initial = 0)
+function sum($collection, float|int $initial = 0): float|int
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

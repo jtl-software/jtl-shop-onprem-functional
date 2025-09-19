@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -21,7 +23,7 @@ use Traversable;
  * @return mixed
  * @no-named-arguments
  */
-function last_index_of($collection, $value)
+function last_index_of($collection, mixed $value): mixed
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

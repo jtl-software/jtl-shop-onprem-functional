@@ -8,16 +8,18 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
  * Returns true if $a is strictly less than $b.
  *
  * @param mixed $b
- * @return \Closure(mixed)
+ * @return \Closure
  * @no-named-arguments
  */
-function less_than($b)
+function less_than(mixed $b): \Closure
 {
-    return static fn($a) => $a < $b;
+    return static fn(mixed $a): bool => $a < $b;
 }

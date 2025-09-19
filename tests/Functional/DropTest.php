@@ -8,31 +8,32 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
 use Functional\Exceptions\InvalidArgumentException;
 
-use function Functional\drop_last;
 use function Functional\drop_first;
+use function Functional\drop_last;
 
 class DropTest extends AbstractTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value1', 'value2', 'value3', 'value4'];
+        $this->list         = ['value1', 'value2', 'value3', 'value4'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3', 'k4' => 'val4'];
+        $this->hash         = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3', 'k4' => 'val4'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
     public function test(): void
     {
-        $fn = function ($v, $k, $collection) {
+        $fn = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
-            $return = \is_int($k) ? ($k != 2) : ($v[3] != 3);
-            return $return;
+            return \is_int($k) ? ($k != 2) : ($v[3] != 3);
         };
         self::assertSame([0 => 'value1', 1 => 'value2'], drop_last($this->list, $fn));
         self::assertSame([2 => 'value3', 3 => 'value4'], drop_first($this->list, $fn));

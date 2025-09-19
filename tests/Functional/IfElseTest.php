@@ -8,11 +8,13 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
-use function Functional\if_else;
-use function Functional\equal;
 use function Functional\const_function;
+use function Functional\equal;
+use function Functional\if_else;
 
 class IfElseTest extends AbstractTestCase
 {

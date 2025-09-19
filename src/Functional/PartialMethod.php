@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -21,7 +23,7 @@ use Functional\Exceptions\InvalidArgumentException;
  * @return callable
  * @no-named-arguments
  */
-function partial_method($methodName, array $arguments = [], $defaultValue = null)
+function partial_method(string $methodName, array $arguments = [], mixed $defaultValue = null): callable
 {
     InvalidArgumentException::assertMethodName($methodName, __FUNCTION__, 1);
 

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayObject;
@@ -32,23 +34,23 @@ class ValueToKeyTest extends AbstractTestCase
         $binary = \random_bytes(10);
 
         return [
-            'Nothing' => [[], '[]'],
-            'NULL' => [[null], '[i:0;~N;]'],
-            'null string' => [['null'], '[i:0;~s:4:"null";]'],
-            'string' => [['string'], '[i:0;~s:6:"string";]'],
-            'integers' => [[12, 123], '[i:0;~i:12;:i:1;~i:123;]'],
-            'funky integers' => [[INF, NAN], '[i:0;~d:INF;:i:1;~d:NAN;]'],
-            'integer & float' => [[12, 123.10], '[i:0;~i:12;:i:1;~d:123.1;]'],
-            'array of string' => [[['foo', 'bar']], '[i:0;~[i:0;~s:3:"foo";:i:1;~s:3:"bar";]]'],
-            'nested array of strings (1)' => [
+            'Nothing'                                       => [[], '[]'],
+            'NULL'                                          => [[null], '[i:0;~N;]'],
+            'null string'                                   => [['null'], '[i:0;~s:4:"null";]'],
+            'string'                                        => [['string'], '[i:0;~s:6:"string";]'],
+            'integers'                                      => [[12, 123], '[i:0;~i:12;:i:1;~i:123;]'],
+            'funky integers'                                => [[INF, NAN], '[i:0;~d:INF;:i:1;~d:NAN;]'],
+            'integer & float'                               => [[12, 123.10], '[i:0;~i:12;:i:1;~d:123.1;]'],
+            'array of string'                               => [[['foo', 'bar']], '[i:0;~[i:0;~s:3:"foo";:i:1;~s:3:"bar";]]'],
+            'nested array of strings (1)'                   => [
                 [['foo', 'bar', ['foo', 'bar']]],
                 '[i:0;~[i:0;~s:3:"foo";:i:1;~s:3:"bar";:i:2;~[i:0;~s:3:"foo";:i:1;~s:3:"bar";]]]',
             ],
-            'nested array of strings (variation)' => [
+            'nested array of strings (variation)'           => [
                 [['foo', 'bar', ['foo', ['bar']]]],
                 '[i:0;~[i:0;~s:3:"foo";:i:1;~s:3:"bar";:i:2;~[i:0;~s:3:"foo";:i:1;~[i:0;~s:3:"bar";]]]]',
             ],
-            'multiple nested arrays of strings' => [
+            'multiple nested arrays of strings'             => [
                 [['foo', 'bar', ['foo', ['bar'], 'baz']]],
                 '[i:0;~[i:0;~s:3:"foo";:i:1;~s:3:"bar";:i:2;~[i:0;~s:3:"foo";:i:1;~[i:0;~s:3:"bar";]:i:2;~s:3:"baz";]]]',
             ],
@@ -56,7 +58,7 @@ class ValueToKeyTest extends AbstractTestCase
                 [['foo', 'bar', ['foo', ['bar', 'baz']]]],
                 '[i:0;~[i:0;~s:3:"foo";:i:1;~s:3:"bar";:i:2;~[i:0;~s:3:"foo";:i:1;~[i:0;~s:3:"bar";:i:1;~s:3:"baz";]]]]',
             ],
-            'hashes' => [[['foo' => 'bar']], '[i:0;~[s:3:"foo";~s:3:"bar";]]'],
+            'hashes'                                        => [[['foo' => 'bar']], '[i:0;~[s:3:"foo";~s:3:"bar";]]'],
             [[$binary], '[i:0;~s:10:"' . $binary . '";]'],
             [[new stdClass()], self::matchesRegularExpression(self::createObjectRefRegex('stdClass'))],
             [[new ArrayObject()], self::matchesRegularExpression(self::createObjectRefRegex('ArrayObject'))],

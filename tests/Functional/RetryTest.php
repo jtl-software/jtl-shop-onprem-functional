@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -23,8 +25,7 @@ interface Retryer
 
 class RetryTest extends AbstractTestCase
 {
-    /** @var MockObject */
-    private $retryer;
+    private MockObject&Retryer $retryer;
 
     protected function setUp(): void
     {
@@ -34,8 +35,7 @@ class RetryTest extends AbstractTestCase
 
     public function testTriedOnceIfItSucceeds(): void
     {
-        $this->retryer
-            ->expects(self::once())
+        $this->retryer->expects(self::once())
             ->method('retry')
             ->with(0, 0)
             ->willReturn('value');
@@ -45,8 +45,7 @@ class RetryTest extends AbstractTestCase
 
     public function testRetriedIfItFails(): void
     {
-        $this->retryer
-            ->method('retry')
+        $this->retryer->method('retry')
             ->withConsecutive([0, 0], [1, 0])
             ->willReturnOnConsecutiveCalls(self::throwException(new Exception()), 'value');
 
@@ -55,8 +54,7 @@ class RetryTest extends AbstractTestCase
 
     public function testThrowsExceptionIfRetryCountIsReached(): void
     {
-        $this->retryer
-            ->method('retry')
+        $this->retryer->method('retry')
             ->withConsecutive([0, 0], [1, 0])
             ->willReturnOnConsecutiveCalls(
                 self::throwException(new Exception('first')),
@@ -71,8 +69,7 @@ class RetryTest extends AbstractTestCase
 
     public function testRetryWithEmptyDelaySequence(): void
     {
-        $this->retryer
-            ->method('retry')
+        $this->retryer->method('retry')
             ->withConsecutive([0, 0], [1, 0])
             ->willReturnOnConsecutiveCalls(
                 self::throwException(new Exception('first')),
@@ -88,15 +85,14 @@ class RetryTest extends AbstractTestCase
     public function testThrowsExceptionIfRetryCountNotAtLeast1(): void
     {
         $this->expectArgumentError(
-            'Functional\retry() expects parameter 2 to be an integer greater than or equal to 1'
+            'Functional\retry() expects parameter 2 to be an int greater than or equal to 1'
         );
         retry([$this->retryer, 'retry'], 0);
     }
 
     public function testUsesDelayTraversableForSleeping(): void
     {
-        $this->retryer
-            ->method('retry')
+        $this->retryer->method('retry')
             ->withConsecutive([0, 0], [1, 0])
             ->willReturnOnConsecutiveCalls(
                 self::throwException(new Exception('first')),
@@ -111,8 +107,7 @@ class RetryTest extends AbstractTestCase
 
     public function testDelayerSmallerThanRetries(): void
     {
-        $this->retryer
-            ->method('retry')
+        $this->retryer->method('retry')
             ->withConsecutive([0, 10], [1, 20], [2, 30], [3, 10])
             ->willReturnOnConsecutiveCalls(
                 self::throwException(new Exception('first')),

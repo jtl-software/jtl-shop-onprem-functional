@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -19,7 +21,7 @@ class ButLastTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = [1, 2, 3, 4];
+        $this->list         = [1, 2, 3, 4];
         $this->listIterator = new ArrayIterator($this->list);
     }
 

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -22,11 +24,11 @@ class SortTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['cat', 'bear', 'aardvark'];
+        $this->list         = ['cat', 'bear', 'aardvark'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['c' => 'cat', 'b' => 'bear', 'a' => 'aardvark'];
+        $this->hash         = ['c' => 'cat', 'b' => 'bear', 'a' => 'aardvark'];
         $this->hashIterator = new ArrayIterator($this->hash);
-        $this->sortCallback = static function ($left, $right, $collection) {
+        $this->sortCallback = static function ($left, $right, $collection): int {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
             return \strcmp($left, $right);
         };
@@ -42,10 +44,10 @@ class SortTest extends AbstractTestCase
 
     public function testWithoutPreserveKeys(): void
     {
-        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->list, $this->sortCallback, false));
-        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->listIterator, $this->sortCallback, false));
-        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->hash, $this->sortCallback, false));
-        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->hashIterator, $this->sortCallback, false));
+        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->list, $this->sortCallback));
+        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->listIterator, $this->sortCallback));
+        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->hash, $this->sortCallback));
+        self::assertSame([0 => 'aardvark', 1 => 'bear', 2 => 'cat'], F\sort($this->hashIterator, $this->sortCallback));
     }
 
     public function testPassNonCallable(): void

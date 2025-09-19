@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -17,24 +19,22 @@ use function Functional\ratio;
 
 class RatioTest extends AbstractTestCase
 {
-    /** @var int[] */
-    private $intArray;
+    /** @var array<mixed> */
+    private array $intArray;
 
-    /** @var Traversable|int[] */
-    private $intIterator;
+    private Traversable $intIterator;
 
-    /** @var float[] */
-    private $floatArray;
+    /** @var array<mixed> */
+    private array $floatArray;
 
-    /** @var Traversable|float[] */
-    private $floatIterator;
+    private Traversable $floatIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->intArray = [1 => 1, 2, "foo" => 3, 4];
-        $this->intIterator = new ArrayIterator($this->intArray);
-        $this->floatArray = ["foo" => 1.5, 1.1, 1];
+        $this->intArray      = [1 => 1, 2, 'foo' => 3, 4];
+        $this->intIterator   = new ArrayIterator($this->intArray);
+        $this->floatArray    = ['foo' => 1.5, 1.1, 1];
         $this->floatIterator = new ArrayIterator($this->floatArray);
     }
 
@@ -48,7 +48,7 @@ class RatioTest extends AbstractTestCase
         self::assertEqualsWithDelta(-1, ratio($this->floatIterator, -1.65), 0.01);
     }
 
-    /** @dataProvider Functional\Tests\MathDataProvider::injectErrorCollection */
+    /** @dataProvider \Functional\Tests\MathDataProvider::injectErrorCollection */
     public function testElementsOfWrongTypeAreIgnored($collection): void
     {
         self::assertEqualsWithDelta(0.333, ratio($collection), 0.001);
@@ -57,6 +57,6 @@ class RatioTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\ratio() expects parameter 1 to be array or instance of Traversable');
-        ratio('invalidCollection', 'strlen');
+        ratio('invalidCollection', 1);
     }
 }

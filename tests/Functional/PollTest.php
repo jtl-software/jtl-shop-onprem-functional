@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -22,8 +24,7 @@ interface Poller
 
 class PollTest extends AbstractTestCase
 {
-    /** @var MockObject */
-    private $poller;
+    private MockObject&Poller $poller;
 
     protected function setUp(): void
     {
@@ -33,8 +34,7 @@ class PollTest extends AbstractTestCase
 
     public function testPollReturnsTrue(): void
     {
-        $this->poller
-            ->expects(self::once())
+        $this->poller->expects(self::once())
             ->method('poll')
             ->with(0, 0)
             ->willReturn(true);
@@ -44,8 +44,7 @@ class PollTest extends AbstractTestCase
 
     public function testPollRetriesIfNotTruthy(): void
     {
-        $this->poller
-            ->method('poll')
+        $this->poller->method('poll')
             ->withConsecutive([0, 0], [1, 0])
             ->willReturnOnConsecutiveCalls(false, 'OH HAI');
 
@@ -54,8 +53,7 @@ class PollTest extends AbstractTestCase
 
     public function testPollRetriesAndGivesUpAfterTimeout(): void
     {
-        $this->poller
-            ->method('poll')
+        $this->poller->method('poll')
             ->withConsecutive([0, 0])
             ->willReturnCallback(
                 function () {
@@ -69,8 +67,7 @@ class PollTest extends AbstractTestCase
 
     public function testWithEmptyDelayCallsAtLeastOnce(): void
     {
-        $this->poller
-            ->method('poll')
+        $this->poller->method('poll')
             ->withConsecutive([0, 0])
             ->willReturn(true);
 
@@ -80,7 +77,7 @@ class PollTest extends AbstractTestCase
     public function testThrowsExceptionIfTimeoutCountNotAtLeast0(): void
     {
         $this->expectArgumentError(
-            'Functional\poll() expects parameter 2 to be an integer greater than or equal to 0'
+            'Functional\poll() expects parameter 2 to be an int greater than or equal to 0'
         );
         poll([$this->poller, 'poll'], -1);
     }

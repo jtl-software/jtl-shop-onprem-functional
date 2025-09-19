@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -30,7 +32,7 @@ class PartialAnyTest extends AbstractPartialTestCase
     public function testBindWithPlaceholderConstant(): void
     {
         $context = \hash_init('md2');
-        $hash = partial_any('hash_update', $context, …());
+        $hash    = partial_any('hash_update', $context, …());
         $hash('oh hi');
         self::assertSame('6f24cbf6005b9bfc0176abbbe309f0d0', \hash_final($context));
     }

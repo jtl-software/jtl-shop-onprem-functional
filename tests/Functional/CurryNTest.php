@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use DateTime;
@@ -50,7 +52,7 @@ class CurryNTest extends AbstractPartialTestCase
      */
     public function testCallbackTypes($callback, $params, $expected, $required, $transformer = null): void
     {
-        if (\is_null($transformer)) {
+        if ($transformer === null) {
             $transformer = 'Functional\id';
         }
 
@@ -75,7 +77,7 @@ class CurryNTest extends AbstractPartialTestCase
 
     public function callbacks(): array
     {
-        $dt = new DateTime();
+        $dt  = new DateTime();
         $dt2 = clone $dt;
 
         $dateFormat = invoker('format', [DateTime::ATOM]);

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -20,7 +22,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function zip(...$args)
+function zip(...$args): array
 {
     $callback = null;
     if (\is_callable(\end($args))) {

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayObject;
@@ -17,19 +19,19 @@ use function Functional\pick;
 
 class PickTest extends AbstractTestCase
 {
-    private $array_1;
+    private array $array_1;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->array_1 = [
-            'one' => '1',
-            'two' => '2',
-            3 => '3',
-            'null-index' => null,
-            'zero-index' => 0,
+            'one'               => '1',
+            'two'               => '2',
+            3                   => '3',
+            'null-index'        => null,
+            'zero-index'        => 0,
             'zero-string-index' => '0',
-            'false-index' => false
+            'false-index'       => false
         ];
     }
 

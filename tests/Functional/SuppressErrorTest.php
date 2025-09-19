@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use RuntimeException;
@@ -20,7 +22,7 @@ class SuppressErrorTest extends AbstractTestCase
 {
     public function testErrorIsSuppressed(): void
     {
-        $origFn = function () {
+        $origFn = function (): void {
             \trigger_error('Some error', E_USER_ERROR);
         };
 
@@ -39,7 +41,7 @@ class SuppressErrorTest extends AbstractTestCase
     public function testExceptionsAreHandledTransparently(): void
     {
         $expectedException = new RuntimeException();
-        $fn = suppress_error(
+        $fn                = suppress_error(
             function () use ($expectedException) {
                 throw $expectedException;
             }
@@ -54,12 +56,12 @@ class SuppressErrorTest extends AbstractTestCase
     {
         $errorMessage = null;
         \set_error_handler(
-            static function ($level, $message) use (&$errorMessage) {
+            static function ($level, $message) use (&$errorMessage): void {
                 $errorMessage = $message;
             }
         );
 
-        $origFn = static function () {
+        $origFn = static function (): void {
             \trigger_error('Some error', E_USER_ERROR);
         };
 

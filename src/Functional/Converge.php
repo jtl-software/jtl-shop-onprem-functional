@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -22,7 +24,7 @@ namespace Functional;
  * @return callable A flipped version of the given function
  * @no-named-arguments
  */
-function converge($convergingFunction, array $branchingFunctions)
+function converge(callable $convergingFunction, array $branchingFunctions): callable
 {
     return static function (...$values) use ($convergingFunction, $branchingFunctions) {
         $result = [];

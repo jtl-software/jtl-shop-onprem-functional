@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -21,7 +23,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function flatten($collection)
+function flatten($collection): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
@@ -31,7 +33,7 @@ function flatten($collection)
     while (!empty($stack)) {
         $item = \array_shift($stack);
 
-        if (\is_array($item) || $item instanceof Traversable) {
+        if (\is_iterable($item)) {
             foreach ($item as $element) {
                 \array_unshift($stack, $element);
             }

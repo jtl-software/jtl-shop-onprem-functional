@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -18,26 +20,24 @@ use function Functional\invoke_first;
 class InvokeFirstTest extends AbstractTestCase
 {
     /** @var object[] */
-    private $keyArray;
+    private array $keyArray;
 
-    /** @var Traversable */
-    private $keyIterator;
+    private Traversable $keyIterator;
 
-    /** @var array */
-    private $arrayVeryFirstNotCallable;
+    /** @var array<mixed> */
+    private array $arrayVeryFirstNotCallable;
 
-    /** @var Traversable */
-    private $iteratorVeryFirstNotCallable;
+    private Traversable $iteratorVeryFirstNotCallable;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = [$this, null, null];
+        $this->list         = [$this, null, null];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->keyArray = ['k1' => $this, 'k2' => null];
-        $this->keyIterator = new ArrayIterator(['k1' => $this, 'k2' => null]);
+        $this->keyArray     = ['k1' => $this, 'k2' => null];
+        $this->keyIterator  = new ArrayIterator(['k1' => $this, 'k2' => null]);
 
-        $this->arrayVeryFirstNotCallable = [null, $this, null, null];
+        $this->arrayVeryFirstNotCallable    = [null, $this, null, null];
         $this->iteratorVeryFirstNotCallable = new ArrayIterator($this->arrayVeryFirstNotCallable);
     }
 
@@ -68,12 +68,6 @@ class InvokeFirstTest extends AbstractTestCase
     {
         $this->expectArgumentError('Functional\invoke_first() expects parameter 1 to be array or instance of Traversable');
         invoke_first('invalidCollection', 'method');
-    }
-
-    public function testPassNoPropertyName(): void
-    {
-        $this->expectArgumentError('Functional\invoke_first() expects parameter 2 to be string');
-        invoke_first($this->list, new \stdClass());
     }
 
     public function testException(): void

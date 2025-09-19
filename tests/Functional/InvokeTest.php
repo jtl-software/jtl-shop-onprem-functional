@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -17,19 +19,19 @@ use function Functional\invoke;
 
 class InvokeTest extends AbstractTestCase
 {
-    /** @var object[] */
-    private $keyArray;
+    /** @var array<string, object> */
+    private array $keyArray;
 
     /** @var Traversable */
-    private $keyIterator;
+    private Traversable $keyIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = [$this, $this, $this];
+        $this->list         = [$this, $this, $this];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->keyArray = ['k1' => $this, 'k2' => $this];
-        $this->keyIterator = new ArrayIterator(['k1' => $this, 'k2' => $this]);
+        $this->keyArray     = ['k1' => $this, 'k2' => $this];
+        $this->keyIterator  = new ArrayIterator(['k1' => $this, 'k2' => $this]);
     }
 
     public function test(): void
@@ -47,12 +49,6 @@ class InvokeTest extends AbstractTestCase
     {
         $this->expectArgumentError('Functional\invoke() expects parameter 1 to be array or instance of Traversable');
         invoke('invalidCollection', 'method');
-    }
-
-    public function testPassNoPropertyName(): void
-    {
-        $this->expectArgumentError('Functional\invoke() expects parameter 2 to be string');
-        invoke($this->list, new \stdClass());
     }
 
     public function testException(): void

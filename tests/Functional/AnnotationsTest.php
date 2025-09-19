@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ReflectionFunction;
@@ -22,9 +24,7 @@ class AnnotationsTest extends AbstractTestCase
             \array_values(
                 \array_filter(
                     \get_defined_functions()['user'],
-                    static function (string $function): bool {
-                        return \stripos($function, 'Functional\\') === 0;
-                    }
+                    static fn(string $function): bool => \strncasecmp($function, 'Functional\\', 11) === 0
                 )
             ),
             'Functional\id'

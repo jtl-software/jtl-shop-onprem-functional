@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\capture;
@@ -17,9 +19,7 @@ class CaptureTest extends AbstractTestCase
     public function testCaptureReturnValue(): void
     {
         $fn = capture(
-            function (...$args) {
-                return $args;
-            },
+            fn(...$args) => $args,
             $result
         );
 

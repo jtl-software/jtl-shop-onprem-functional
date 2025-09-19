@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -23,10 +25,9 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function invoke($collection, $methodName, array $arguments = [])
+function invoke($collection, string $methodName, array $arguments = []): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
-    InvalidArgumentException::assertMethodName($methodName, __FUNCTION__, 2);
 
     $aggregation = [];
 

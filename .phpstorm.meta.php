@@ -1,7 +1,5 @@
 <?php
 
-// see https://confluence.jetbrains.com/display/PhpStorm/PhpStorm+Advanced+Metadata
-
 namespace PHPSTORM_META;
 
 override(\Functional\but_last(0), type(0));

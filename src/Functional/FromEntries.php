@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -20,9 +22,9 @@ use Traversable;
  * @param Traversable|array $collection
  * @return array
  * @no-named-arguments
- * @see Functional\entries
+ * @see entries
  */
-function from_entries($collection)
+function from_entries($collection): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

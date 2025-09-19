@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -18,22 +20,21 @@ use function Functional\flatten;
 
 class FlattenTest extends AbstractTestCase
 {
-    /** @var array */
-    private $goodArray;
+    /** @var array<mixed> */
+    private array $goodArray;
 
-    /** @var array */
-    private $goodArray2;
+    /** @var array<mixed> */
+    private array $goodArray2;
 
-    /** @var Traversable */
-    private $goodIterator;
+    private Traversable $goodIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->goodArray = [1, 2, 3, [4, 5, 6, [7, 8, 9]], 10, [11, [12, 13], 14], 15];
-        $this->goodArray2 = [1 => 1, "foo" => "2", 3 => "3", ["foo" => 5]];
-        $this->goodIterator = new ArrayIterator($this->goodArray);
-        $this->goodIterator[3] = new ArrayIterator($this->goodIterator[3]);
+        $this->goodArray          = [1, 2, 3, [4, 5, 6, [7, 8, 9]], 10, [11, [12, 13], 14], 15];
+        $this->goodArray2         = [1 => 1, 'foo' => '2', 3 => '3', ['foo' => 5]];
+        $this->goodIterator       = new ArrayIterator($this->goodArray);
+        $this->goodIterator[3]    = new ArrayIterator($this->goodIterator[3]);
         $this->goodIterator[5][1] = new ArrayIterator($this->goodIterator[5][1]);
     }
 
@@ -41,7 +42,7 @@ class FlattenTest extends AbstractTestCase
     {
         self::assertSame(\range(1, 15), flatten($this->goodArray));
         self::assertSame(\range(1, 15), flatten($this->goodIterator));
-        self::assertSame([1, "2", "3", 5], flatten($this->goodArray2));
+        self::assertSame([1, '2', '3', 5], flatten($this->goodArray2));
         self::assertEquals([new stdClass()], flatten([[new stdClass()]]));
         self::assertSame([null, null], flatten([[null], null]));
     }

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use AppendIterator;
@@ -28,8 +30,9 @@ use Traversable;
  * @no-named-arguments
  * @throws InvalidArgumentException
  * @throws Exception Any exception thrown by the callback
+ * @noinspection PhpInconsistentReturnPointsInspection
  */
-function retry(callable $callback, $retries, ?Traversable $delaySequence = null)
+function retry(callable $callback, int $retries, ?Traversable $delaySequence = null)
 {
     InvalidArgumentException::assertIntegerGreaterThanOrEqual($retries, 1, __FUNCTION__, 2);
 

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -17,10 +19,10 @@ use Traversable;
 class FirstTest extends AbstractTestCase
 {
     /** @var string[] */
-    private $badArray;
+    private array $badArray;
 
     /** @var Traversable */
-    private $badIterator;
+    private Traversable $badIterator;
 
     public function getAliases(): array
     {
@@ -33,10 +35,10 @@ class FirstTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['first', 'second', 'third'];
+        $this->list         = ['first', 'second', 'third'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->badArray = ['foo', 'bar', 'baz'];
-        $this->badIterator = new ArrayIterator($this->badArray);
+        $this->badArray     = ['foo', 'bar', 'baz'];
+        $this->badIterator  = new ArrayIterator($this->badArray);
     }
 
     /**
@@ -44,9 +46,9 @@ class FirstTest extends AbstractTestCase
      */
     public function test(string $functionName): void
     {
-        $callback = function ($v, $k, $collection) {
+        $callback = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
-            return $v == 'second' && $k == 1;
+            return $v === 'second' && $k == 1;
         };
 
         self::assertSame('second', $functionName($this->list, $callback));

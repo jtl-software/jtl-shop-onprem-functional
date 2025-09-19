@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ use Functional\Sequences\ExponentialSequence;
  * @throws InvalidArgumentException
  * @no-named-arguments
  */
-function sequence_exponential($start, $percentage)
+function sequence_exponential(int $start, int $percentage): ExponentialSequence
 {
     InvalidArgumentException::assertIntegerGreaterThanOrEqual($start, 1, __METHOD__, 1);
     InvalidArgumentException::assertIntegerGreaterThanOrEqual($percentage, 1, __METHOD__, 2);

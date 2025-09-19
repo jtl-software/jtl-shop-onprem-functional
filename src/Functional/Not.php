@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -17,7 +19,7 @@ namespace Functional;
  * @return callable A negation version on the given $function
  * @no-named-arguments
  */
-function not(callable $function)
+function not(callable $function): callable
 {
     return static fn($value) => !$function($value);
 }

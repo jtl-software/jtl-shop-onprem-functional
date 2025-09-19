@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -18,7 +20,7 @@ use function Functional\reduce_right;
 class ReduceTest extends AbstractTestCase
 {
     /** @var iterable */
-    private $currentCollection;
+    private iterable $currentCollection;
 
     protected function setUp(): void
     {
@@ -61,15 +63,14 @@ class ReduceTest extends AbstractTestCase
             reduce_left(
                 [],
                 static function () {
-                },
-                null
+                }
             )
         );
         self::assertSame(
             'initial',
             reduce_left(
                 new ArrayIterator([]),
-                static function () {
+                static function (): void {
                 },
                 'initial'
             )
@@ -77,23 +78,22 @@ class ReduceTest extends AbstractTestCase
         self::assertNull(
             reduce_left(
                 new ArrayIterator([]),
-                static function () {
+                static function (): void {
                 }
             )
         );
         self::assertNull(
             reduce_left(
                 new ArrayIterator([]),
-                static function () {
-                },
-                null
+                static function (): void {
+                }
             )
         );
         self::assertSame(
             'initial',
             reduce_right(
                 [],
-                static function () {
+                static function (): void {
                 },
                 'initial'
             )
@@ -101,23 +101,22 @@ class ReduceTest extends AbstractTestCase
         self::assertNull(
             reduce_right(
                 [],
-                static function () {
+                static function (): void {
                 }
             )
         );
         self::assertNull(
             reduce_right(
                 [],
-                static function () {
-                },
-                null
+                static function (): void {
+                }
             )
         );
         self::assertSame(
             'initial',
             reduce_right(
                 new ArrayIterator([]),
-                static function () {
+                static function (): void {
                 },
                 'initial'
             )
@@ -125,16 +124,15 @@ class ReduceTest extends AbstractTestCase
         self::assertNull(
             reduce_right(
                 new ArrayIterator([]),
-                static function () {
+                static function (): void {
                 }
             )
         );
         self::assertNull(
             reduce_right(
                 new ArrayIterator([]),
-                static function () {
-                },
-                null
+                static function (): void {
+                }
             )
         );
     }

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use const E_USER_DEPRECATED;
@@ -21,7 +23,7 @@ use const E_USER_DEPRECATED;
  * @return mixed
  * @no-named-arguments
  */
-function memoize(?callable $callback = null, $arguments = [], $key = null)
+function memoize(?callable $callback = null, $arguments = [], $key = null): mixed
 {
     static $storage = [];
     if ($callback === null) {

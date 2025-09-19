@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -17,22 +19,19 @@ use function Functional\each;
 
 class EachTest extends AbstractTestCase
 {
-    /**
-     * @var MockObject
-     */
-    private $cb;
+    private MockObject $cb;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->cb = $this->getMockBuilder('cb')
-                         ->setMethods(['call'])
-                         ->getMock();
+            ->setMethods(['call'])
+            ->getMock();
 
 
-        $this->list = ['value0', 'value1', 'value2', 'value3'];
+        $this->list         = ['value0', 'value1', 'value2', 'value3'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k0' => 'value0', 'k1' => 'value1', 'k2' => 'value2'];
+        $this->hash         = ['k0' => 'value0', 'k1' => 'value1', 'k2' => 'value2'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 

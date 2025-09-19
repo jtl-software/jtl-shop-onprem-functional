@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use DomainException;
@@ -21,16 +23,16 @@ use TypeError;
 class AbstractTestCase extends TestCase
 {
     /** @var array */
-    protected $list;
+    protected array $list;
 
     /** @var Traversable */
-    protected $listIterator;
+    protected Traversable $listIterator;
 
     /** @var array */
-    protected $hash;
+    protected array $hash;
 
     /** @var Traversable */
-    protected $hashIterator;
+    protected Traversable $hashIterator;
 
     protected function expectArgumentError(string $message): void
     {

@@ -8,10 +8,11 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
-use PHPUnit\Framework\MockObject\MockObject;
 
 use function Functional\entries;
 use function Functional\from_entries;
@@ -22,9 +23,9 @@ class EntriesFromEntriesTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $this->list = ['value0', 'value1', 'value2', 'value3'];
+        $this->list         = ['value0', 'value1', 'value2', 'value3'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k0' => 'value0', 'k1' => 'value1', 'k2' => 'value2', 'k3' => 'value3'];
+        $this->hash         = ['k0' => 'value0', 'k1' => 'value1', 'k2' => 'value2', 'k3' => 'value3'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 

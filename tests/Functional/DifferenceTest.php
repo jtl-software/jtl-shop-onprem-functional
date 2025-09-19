@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -18,23 +20,21 @@ use function Functional\difference;
 class DifferenceTest extends AbstractTestCase
 {
     /** @var int[] */
-    private $intArray;
+    private array $intArray;
 
-    /** @var Traversable|int[] */
-    private $intIterator;
+    private Traversable $intIterator;
 
     /** @var float[] */
-    private $floatArray;
+    private array $floatArray;
 
-    /** @var Traversable|float[] */
-    private $floatIterator;
+    private Traversable $floatIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->intArray = [1 => 1, 2, "foo" => 3, 4];
-        $this->intIterator = new ArrayIterator($this->intArray);
-        $this->floatArray = ["foo" => 4.5, 1.1, 1];
+        $this->intArray      = [1 => 1, 2, 'foo' => 3, 4];
+        $this->intIterator   = new ArrayIterator($this->intArray);
+        $this->floatArray    = ['foo' => 4.5, 1.1, 1];
         $this->floatIterator = new ArrayIterator($this->floatArray);
     }
 
@@ -42,23 +42,23 @@ class DifferenceTest extends AbstractTestCase
     {
         self::assertSame(-10, difference($this->intArray));
         self::assertSame(-10, difference($this->intIterator));
-        self::assertEqualsWithDelta(-6.6, difference($this->floatArray), 0.01, '');
-        self::assertEqualsWithDelta(-6.6, difference($this->floatIterator), 0.01, '');
+        self::assertEqualsWithDelta(-6.6, difference($this->floatArray), 0.01);
+        self::assertEqualsWithDelta(-6.6, difference($this->floatIterator), 0.01);
         self::assertSame(0, difference($this->intArray, 10));
         self::assertSame(0, difference($this->intIterator, 10));
-        self::assertEqualsWithDelta(-10, difference($this->floatArray, -3.4), 0.01, '');
-        self::assertEqualsWithDelta(-10, difference($this->floatIterator, -3.4), 0.01, '');
+        self::assertEqualsWithDelta(-10, difference($this->floatArray, -3.4), 0.01);
+        self::assertEqualsWithDelta(-10, difference($this->floatIterator, -3.4), 0.01);
     }
 
-    /** @dataProvider Functional\Tests\MathDataProvider::injectErrorCollection */
+    /** @dataProvider \Functional\Tests\MathDataProvider::injectErrorCollection */
     public function testElementsOfWrongTypeAreIgnored($collection): void
     {
-        self::assertEqualsWithDelta(-3.5, difference($collection), 0.1, '');
+        self::assertEqualsWithDelta(-3.5, difference($collection), 0.1);
     }
 
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\difference() expects parameter 1 to be array or instance of Traversable');
-        difference('invalidCollection', 'strlen');
+        difference('invalidCollection', 1   );
     }
 }

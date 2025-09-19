@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\sequence_linear;
@@ -35,7 +37,7 @@ class SequenceLinearTest extends AbstractTestCase
     public function testArgumentMustBePositiveInteger(): void
     {
         $this->expectArgumentError(
-            'Functional\sequence_linear() expects parameter 1 to be an integer greater than or equal to 0'
+            'Functional\sequence_linear() expects parameter 1 to be an int greater than or equal to 0'
         );
         sequence_linear(-1, 1);
     }
@@ -43,8 +45,8 @@ class SequenceLinearTest extends AbstractTestCase
     public function testAmountArgumentMustBeInteger(): void
     {
         $this->expectArgumentError(
-            'Functional\sequence_linear() expects parameter 2 to be integer'
+            'Functional\sequence_linear() expects parameter 2 to be int'
         );
-        sequence_linear(0, 1.1);
+        sequence_linear(0, '1.1');
     }
 }

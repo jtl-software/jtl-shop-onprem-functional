@@ -6,7 +6,10 @@
  * @copyright 2011-2021 Lars Strojny
  * @license   https://opensource.org/licenses/MIT MIT
  * @link      https://github.com/lstrojny/functional-php
+ * @noinspection TypeUnsafeComparisonInspection
  */
+
+declare(strict_types=1);
 
 namespace Functional;
 
@@ -17,7 +20,7 @@ namespace Functional;
  * @return callable the function to perform the comparison
  * @no-named-arguments
  */
-function equal($b)
+function equal(mixed $b): callable
 {
-    return static fn($a) => $a == $b;
+    return static fn(mixed $a): bool => $a == $b;
 }

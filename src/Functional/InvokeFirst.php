@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -20,14 +22,12 @@ use Traversable;
  * @param Traversable|array $collection
  * @param string            $methodName
  * @param array             $arguments
- *
  * @return mixed
  * @no-named-arguments
  */
-function invoke_first($collection, $methodName, array $arguments = [])
+function invoke_first($collection, string $methodName, array $arguments = []): mixed
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
-    InvalidArgumentException::assertMethodName($methodName, __FUNCTION__, 2);
 
     foreach ($collection as $element) {
         $callback = [$element, $methodName];

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ use Functional\Exceptions\InvalidArgumentException;
  * @return callable
  * @no-named-arguments
  */
-function partial_any(callable $callback, ...$arguments)
+function partial_any(callable $callback, ...$arguments): callable
 {
     return static function (...$innerArguments) use ($callback, $arguments) {
         $placeholder = …();

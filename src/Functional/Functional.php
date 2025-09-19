@@ -8,112 +8,114 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 final class Functional
 {
     /**
-     * @see \Function\ary
+     * @see ary
      */
     public const ary = '\Functional\ary';
 
     /**
-     * @see \Functional\average
+     * @see average
      */
     public const average = '\Functional\average';
 
     /**
-     * @see \Functional\but_last
+     * @see but_last
      */
     public const but_last = '\Functional\but_last';
 
     /**
-     * @see \Functional\capture
+     * @see capture
      */
     public const capture = '\Functional\capture';
 
     /**
-     * @see \Functional\compare_object_hash_on
+     * @see compare_object_hash_on
      */
     public const compare_object_hash_on = '\Functional\compare_object_hash_on';
 
     /**
-     * @see \Functional\compare_on
+     * @see compare_on
      */
     public const compare_on = '\Functional\compare_on';
 
     /**
-     * @see \Functional\compose
+     * @see compose
      */
     public const compose = '\Functional\compose';
 
     /**
-     * @see \Functional\concat
+     * @see concat
      */
     public const concat = '\Functional\concat';
 
     /**
-     * @see \Functional\const_function
+     * @see const_function
      */
     public const const_function = '\Functional\const_function';
 
     /**
-     * @see \Functional\contains
+     * @see contains
      */
     public const contains = '\Functional\contains';
 
     /**
-     * @see \Functional\converge
+     * @see converge
      */
     public const converge = '\Functional\converge';
 
     /**
-     * @see \Functional\curry
+     * @see curry
      */
     public const curry = '\Functional\curry';
 
     /**
-     * @see \Functional\curry_n
+     * @see curry_n
      */
     public const curry_n = '\Functional\curry_n';
 
     /**
-     * @see \Functional\difference
+     * @see difference
      */
     public const difference = '\Functional\difference';
 
     /**
-     * @see \Functional\drop_first
+     * @see drop_first
      */
     public const drop_first = '\Functional\drop_first';
 
     /**
-     * @see \Functional\drop_last
+     * @see drop_last
      */
     public const drop_last = '\Functional\drop_last';
 
     /**
-     * @see \Functional\each
+     * @see each
      */
     public const each = '\Functional\each';
 
     /**
-     * @see \Functional\entries
+     * @see entries
      */
     public const entries = '\Functional\entries';
 
     /**
-     * @see \Functional\equal
+     * @see equal
      */
     public const equal = '\Functional\equal';
 
     /**
-     * @see \Functional\error_to_exception
+     * @see error_to_exception
      */
     public const error_to_exception = '\Functional\error_to_exception';
 
     /**
-     * @see \Functional\every
+     * @see every
      */
     public const every = '\Functional\every';
 
@@ -123,348 +125,348 @@ final class Functional
     public const false = '\Functional\false';
 
     /**
-     * @see \Functional\falsy
+     * @see falsy
      */
     public const falsy = '\Functional\falsy';
 
     /**
-     * @see \Functional\filter
+     * @see filter
      */
     public const filter = '\Functional\filter';
 
     /**
-     * @see \Functional\first
+     * @see first
      */
     public const first = '\Functional\first';
 
     /**
-     * @see \Functional\first_index_of
+     * @see first_index_of
      */
     public const first_index_of = '\Functional\first_index_of';
 
     /**
-     * @see \Functional\flat_map
+     * @see flat_map
      */
     public const flat_map = '\Functional\flat_map';
 
     /**
-     * @see \Functional\flatten
+     * @see flatten
      */
     public const flatten = '\Functional\flatten';
 
     /**
-     * @see \Functional\flip
+     * @see flip
      */
     public const flip = '\Functional\flip';
 
     /**
-     * @see \Functional\from_entries
+     * @see from_entries
      */
     public const from_entries = '\Functional\from_entries';
 
     /**
-     * @see \Functional\greater_than
+     * @see greater_than
      */
     public const greater_than = '\Functional\greater_than';
 
     /**
-     * @see \Functional\greater_than_or_equal
+     * @see greater_than_or_equal
      */
     public const greater_than_or_equal = '\Functional\greater_than_or_equal';
 
     /**
-     * @see \Functional\group
+     * @see group
      */
     public const group = '\Functional\group';
 
     /**
-     * @see \Functional\head
+     * @see head
      */
     public const head = '\Functional\head';
 
     /**
-     * @see \Functional\id
+     * @see id
      */
     public const id = '\Functional\id';
 
     /**
-     * @see \Functional\identical
+     * @see identical
      */
     public const identical = '\Functional\identical';
 
     /**
-     * @see \Functional\if_else
+     * @see if_else
      */
     public const if_else = '\Functional\if_else';
 
     /**
-     * @see \Functional\indexes_of
+     * @see indexes_of
      */
     public const indexes_of = '\Functional\indexes_of';
 
     /**
-     * @see \Functional\intersperse
+     * @see intersperse
      */
     public const intersperse = '\Functional\intersperse';
 
     /**
-     * @see \Functional\invoke
+     * @see invoke
      */
     public const invoke = '\Functional\invoke';
 
     /**
-     * @see \Functional\invoke_first
+     * @see invoke_first
      */
     public const invoke_first = '\Functional\invoke_first';
 
     /**
-     * @see \Functional\invoke_if
+     * @see invoke_if
      */
     public const invoke_if = '\Functional\invoke_if';
 
     /**
-     * @see \Functional\invoke_last
+     * @see invoke_last
      */
     public const invoke_last = '\Functional\invoke_last';
 
     /**
-     * @see \Functional\invoker
+     * @see invoker
      */
     public const invoker = '\Functional\invoker';
 
     /**
-     * @see \Functional\last
+     * @see last
      */
     public const last = '\Functional\last';
 
     /**
-     * @see \Functional\last_index_of
+     * @see last_index_of
      */
     public const last_index_of = '\Functional\last_index_of';
 
     /**
-     * @see \Functional\less_than
+     * @see less_than
      */
     public const less_than = '\Functional\less_than';
 
     /**
-     * @see \Functional\less_than_or_equal
+     * @see less_than_or_equal
      */
     public const less_than_or_equal = '\Functional\less_than_or_equal';
 
     /**
-     * @see \Functional\lexicographic_compare
+     * @see lexicographic_compare
      */
     public const lexicographic_compare = '\Functional\lexicographic_compare';
 
     /**
-     * @see \Functional\map
+     * @see map
      */
     public const map = '\Functional\map';
 
     /**
-     * @see \Functional\matching
+     * @see matching
      * @deprecated
      */
     public const match = '\Functional\match';
 
     /**
-     * @see \Functional\matching
+     * @see matching
      */
     public const matching = '\Functional\matching';
 
     /**
-     * @see \Functional\maximum
+     * @see maximum
      */
     public const maximum = '\Functional\maximum';
 
     /**
-     * @see \Functional\memoize
+     * @see memoize
      */
     public const memoize = '\Functional\memoize';
 
     /**
-     * @see \Functional\minimum
+     * @see minimum
      */
     public const minimum = '\Functional\minimum';
 
     /**
-     * @see \Functional\none
+     * @see none
      */
     public const none = '\Functional\none';
 
     /**
-     * @see \Functional\noop
+     * @see noop
      */
     public const noop = '\Functional\noop';
 
     /**
-     * @see \Functional\not
+     * @see not
      */
     public const not = '\Functional\not';
 
     /**
-     * @see \Functional\omit_keys
+     * @see omit_keys
      */
     public const omit_keys = '\Functional\omit_keys';
 
     /**
-     * @see \Functional\partial_any
+     * @see partial_any
      */
     public const partial_any = '\Functional\partial_any';
 
     /**
-     * @see \Functional\…
+     * @see …
      */
     public const … = '\Functional\…';
 
     /**
-     * @see \Functional\placeholder
+     * @see placeholder
      */
     public const placeholder = '\Functional\placeholder';
 
     /**
-     * @see \Functional\partial_left
+     * @see partial_left
      */
     public const partial_left = '\Functional\partial_left';
 
     /**
-     * @see \Functional\partial_method
+     * @see partial_method
      */
     public const partial_method = '\Functional\partial_method';
 
     /**
-     * @see \Functional\partial_right
+     * @see partial_right
      */
     public const partial_right = '\Functional\partial_right';
 
     /**
-     * @see \Functional\partition
+     * @see partition
      */
     public const partition = '\Functional\partition';
 
     /**
-     * @see \Functional\pick
+     * @see pick
      */
     public const pick = '\Functional\pick';
 
     /**
-     * @see \Functional\pluck
+     * @see pluck
      */
     public const pluck = '\Functional\pluck';
 
     /**
-     * @see \Functional\poll
+     * @see poll
      */
     public const poll = '\Functional\poll';
 
     /**
-     * @see \Functional\product
+     * @see product
      */
     public const product = '\Functional\product';
 
     /**
-     * @see \Functional\ratio
+     * @see ratio
      */
     public const ratio = '\Functional\ratio';
 
     /**
-     * @see \Functional\reduce_left
+     * @see reduce_left
      */
     public const reduce_left = '\Functional\reduce_left';
 
     /**
-     * @see \Functional\reduce_right
+     * @see reduce_right
      */
     public const reduce_right = '\Functional\reduce_right';
 
     /**
-     * @see \Functional\reindex
+     * @see reindex
      */
     public const reindex = '\Functional\reindex';
 
     /**
-     * @see \Functional\reject
+     * @see reject
      */
     public const reject = '\Functional\reject';
 
     /**
-     * @see \Functional\repeat
+     * @see repeat
      */
     public const repeat = '\Functional\repeat';
 
     /**
-     * @see \Functional\retry
+     * @see retry
      */
     public const retry = '\Functional\retry';
 
     /**
-     * @see \Functional\select
+     * @see select
      */
     public const select = '\Functional\select';
 
     /**
-     * @see \Functional\select_keys
+     * @see select_keys
      */
     public const select_keys = '\Functional\select_keys';
 
     /**
-     * @see \Functional\sequence_constant
+     * @see sequence_constant
      */
     public const sequence_constant = '\Functional\sequence_constant';
 
     /**
-     * @see \Functional\sequence_exponential
+     * @see sequence_exponential
      */
     public const sequence_exponential = '\Functional\sequence_exponential';
 
     /**
-     * @see \Functional\sequence_linear
+     * @see sequence_linear
      */
     public const sequence_linear = '\Functional\sequence_linear';
 
     /**
-     * @see \Functional\some
+     * @see some
      */
     public const some = '\Functional\some';
 
     /**
-     * @see \Functional\sort
+     * @see sort
      */
     public const sort = '\Functional\sort';
 
     /**
-     * @see \Functional\sum
+     * @see sum
      */
     public const sum = '\Functional\sum';
 
     /**
-     * @see \Functional\suppress_error
+     * @see suppress_error
      */
     public const suppress_error = '\Functional\suppress_error';
 
     /**
-     * @see \Functional\tail
+     * @see tail
      */
     public const tail = '\Functional\tail';
 
     /**
-     * @see \Functional\tail_recursion
+     * @see tail_recursion
      */
     public const tail_recursion = '\Functional\tail_recursion';
 
     /**
-     * @see \Functional\take_left
+     * @see take_left
      */
     public const take = '\Functional\take_left';
 
     /**
-     * @see \Functional\take_right
+     * @see take_right
      */
     public const take_right = '\Functional\take_right';
 
     /**
-     * @see \Functional\tap
+     * @see tap
      */
     public const tap = '\Functional\tap';
 
@@ -474,32 +476,32 @@ final class Functional
     public const true = '\Functional\true';
 
     /**
-     * @see \Functional\truthy
+     * @see truthy
      */
     public const truthy = '\Functional\truthy';
 
     /**
-     * @see \Functional\unique
+     * @see unique
      */
     public const unique = '\Functional\unique';
 
     /**
-     * @see \Functional\value_to_key
+     * @see value_to_key
      */
     public const value_to_key = '\Functional\value_to_key';
 
     /**
-     * @see \Functional\with
+     * @see with
      */
     public const with = '\Functional\with';
 
     /**
-     * @see \Functional\zip
+     * @see zip
      */
     public const zip = '\Functional\zip';
 
     /**
-     * @see \Functional\zip_all
+     * @see zip_all
      */
     public const zip_all = '\Functional\zip_all';
 

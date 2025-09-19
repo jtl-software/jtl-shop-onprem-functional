@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -20,15 +22,15 @@ class MapTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value', 'value'];
+        $this->list         = ['value', 'value'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'val1', 'k2' => 'val2'];
+        $this->hash         = ['k1' => 'val1', 'k2' => 'val2'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
     public function test(): void
     {
-        $fn = function ($v, $k, $collection) {
+        $fn = function ($v, $k, $collection): string {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
             return $k . $v;
         };

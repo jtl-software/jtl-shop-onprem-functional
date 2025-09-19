@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -20,7 +22,7 @@ use Traversable;
  * @return mixed
  * @no-named-arguments
  */
-function reduce_right($collection, callable $callback, $initial = null)
+function reduce_right($collection, callable $callback, mixed $initial = null): mixed
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Closure;
@@ -21,7 +23,7 @@ use Functional\Exceptions\InvalidArgumentException;
  * @return Closure
  * @no-named-arguments
  */
-function repeat(callable $callback)
+function repeat(callable $callback): Closure
 {
     return static function ($times) use ($callback) {
         InvalidArgumentException::assertPositiveInteger($times, __FUNCTION__, 1);

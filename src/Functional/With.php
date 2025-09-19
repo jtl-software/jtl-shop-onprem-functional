@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ use Functional\Exceptions\InvalidArgumentException;
  * @return mixed
  * @no-named-arguments
  */
-function with($value, callable $callback, $invokeValue = true, $default = null)
+function with(mixed $value, callable $callback, bool $invokeValue = true, mixed $default = null): mixed
 {
     InvalidArgumentException::assertCallback($callback, __FUNCTION__, 2);
 

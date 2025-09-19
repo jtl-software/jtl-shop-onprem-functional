@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ use Traversable;
  * @return mixed
  * @no-named-arguments
  */
-function last($collection, ?callable $callback = null)
+function last($collection, ?callable $callback = null): mixed
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

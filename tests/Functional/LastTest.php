@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -19,25 +21,24 @@ use function Functional\last;
 class LastTest extends AbstractTestCase
 {
     /** @var string[] */
-    private $badArray;
+    private array $badArray;
 
-    /** @var Traversable|string[] */
-    private $badIterator;
+    private Traversable $badIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['first', 'second', 'third', 'fourth'];
+        $this->list         = ['first', 'second', 'third', 'fourth'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->badArray = ['foo', 'bar', 'baz'];
-        $this->badIterator = new ArrayIterator($this->badArray);
+        $this->badArray     = ['foo', 'bar', 'baz'];
+        $this->badIterator  = new ArrayIterator($this->badArray);
     }
 
     public function test(): void
     {
-        $fn = function ($v, $k, $collection) {
+        $fn = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
-            return ($v == 'first' && $k == 0) || ($v == 'third' && $k == 2);
+            return ($v === 'first' && $k === 0) || ($v === 'third' && $k === 2);
         };
 
         self::assertSame('third', last($this->list, $fn));
@@ -49,9 +50,9 @@ class LastTest extends AbstractTestCase
     public function testWithoutCallback(): void
     {
         self::assertSame('fourth', last($this->list));
-        self::assertSame('fourth', last($this->list, null));
+        self::assertSame('fourth', last($this->list));
         self::assertSame('fourth', last($this->listIterator));
-        self::assertSame('fourth', last($this->listIterator, null));
+        self::assertSame('fourth', last($this->listIterator));
     }
 
     public function testPassNonCallable(): void

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Sequences;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -16,25 +18,14 @@ use Iterator;
 /** @internal */
 class LinearSequence implements Iterator
 {
-    /** @var int */
-    private $start;
+    private int $value;
 
-    /** @var int */
-    private $amount;
-
-    /** @var int */
-    private $value;
-
-    public function __construct($start, $amount)
+    public function __construct(private readonly int $start, private readonly int $amount)
     {
         InvalidArgumentException::assertIntegerGreaterThanOrEqual($start, 0, __METHOD__, 1);
-        InvalidArgumentException::assertInteger($amount, __METHOD__, 2);
-
-        $this->start  = $start;
-        $this->amount = $amount;
     }
 
-    public function current(): mixed
+    public function current(): int
     {
         return $this->value;
     }
@@ -44,7 +35,7 @@ class LinearSequence implements Iterator
         $this->value += $this->amount;
     }
 
-    public function key(): mixed
+    public function key(): int
     {
         return 0;
     }

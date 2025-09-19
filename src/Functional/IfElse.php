@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -16,10 +18,10 @@ namespace Functional;
  * @param callable $if the condition function
  * @param callable $then function to call if condition is true
  * @param callable $else function to call if condition is false
- * @return mixed the return value of the given $then or $else functions
+ * @return \Closure
  * @no-named-arguments
  */
-function if_else(callable $if, callable $then, callable $else)
+function if_else(callable $if, callable $then, callable $else): \Closure
 {
     return static fn($value) => $if($value) ? $then($value) : $else($value);
 }

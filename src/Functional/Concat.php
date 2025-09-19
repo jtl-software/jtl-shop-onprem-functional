@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -17,7 +19,7 @@ namespace Functional;
  * @return string
  * @no-named-arguments
  */
-function concat(string ...$strings)
+function concat(string ...$strings): string
 {
     return \implode('', $strings);
 }

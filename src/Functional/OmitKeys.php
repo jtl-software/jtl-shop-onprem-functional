@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -21,7 +23,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function omit_keys($collection, array $keys)
+function omit_keys($collection, array $keys): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

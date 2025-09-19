@@ -8,11 +8,11 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
-use Closure;
 use ReflectionFunction;
-use ReflectionMethod;
 
 /**
  * Return a curryied version of the given function. You can decide if you also
@@ -23,20 +23,9 @@ use ReflectionMethod;
  * @return callable a curryied version of the given function
  * @no-named-arguments
  */
-function curry(callable $function, $required = true)
+function curry(callable $function, bool $required = true): callable
 {
-    if (\method_exists('Closure', 'fromCallable')) {
-        // Closure::fromCallable was introduced in PHP 7.1
-        $reflection = new ReflectionFunction(Closure::fromCallable($function));
-    } elseif (\is_string($function) && \strpos($function, '::', 1) !== false) {
-        $reflection = new ReflectionMethod($function);
-    } elseif (\is_array($function) && \count($function) === 2) {
-        $reflection = new ReflectionMethod($function[0], $function[1]);
-    } elseif (\is_object($function) && \method_exists($function, '__invoke')) {
-        $reflection = new ReflectionMethod($function, '__invoke');
-    } else {
-        $reflection = new ReflectionFunction($function);
-    }
+    $reflection = new ReflectionFunction($function(...));
 
     $count = $required ?
         $reflection->getNumberOfRequiredParameters() :

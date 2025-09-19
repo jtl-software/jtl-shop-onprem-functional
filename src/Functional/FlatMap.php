@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -29,7 +31,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function flat_map($collection, callable $callback)
+function flat_map($collection, callable $callback): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
@@ -38,7 +40,7 @@ function flat_map($collection, callable $callback)
     foreach ($collection as $index => $element) {
         $result = $callback($element, $index, $collection);
 
-        if (\is_array($result) || $result instanceof Traversable) {
+        if (\is_iterable($result)) {
             foreach ($result as $item) {
                 $flattened[] = $item;
             }

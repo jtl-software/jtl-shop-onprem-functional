@@ -8,19 +8,18 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
-namespace Functional;
+declare(strict_types=1);
 
-use ErrorException;
+namespace Functional;
 
 /**
  * Takes a function and returns a new function that wraps the callback and suppresses the PHP error
  *
  * @param callable $callback
- * @return mixed
+ * @return \Closure
  * @no-named-arguments
- * @throws ErrorException Throws exception if PHP error happened
  */
-function suppress_error(callable $callback)
+function suppress_error(callable $callback): \Closure
 {
     return static function (...$arguments) use ($callback) {
         try {

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -38,7 +40,7 @@ class SelectKeysTest extends AbstractTestCase
 
     public function testPassNonArrayOrTraversable(): void
     {
-        $this->expectArgumentError("Functional\select_keys() expects parameter 1 to be array or instance of Traversable");
-        select_keys(new \stdclass(), []);
+        $this->expectArgumentError('Functional\select_keys() expects parameter 1 to be array or instance of Traversable');
+        select_keys(new \stdClass(), []);
     }
 }

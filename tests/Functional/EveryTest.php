@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -19,24 +21,22 @@ use function Functional\every;
 class EveryTest extends AbstractTestCase
 {
     /** @var string[] */
-    private $goodArray;
+    private array $goodArray;
 
-    /** @var Traversable|string[] */
-    private $goodIterator;
+    private Traversable $goodIterator;
 
     /** @var string[] */
-    private $badArray;
+    private array $badArray;
 
-    /** @var Traversable|string[] */
-    private $badIterator;
+    private Traversable $badIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->goodArray = ['value', 'value', 'value'];
+        $this->goodArray    = ['value', 'value', 'value'];
         $this->goodIterator = new ArrayIterator($this->goodArray);
-        $this->badArray = ['value', 'nope', 'value'];
-        $this->badIterator = new ArrayIterator($this->badArray);
+        $this->badArray     = ['value', 'nope', 'value'];
+        $this->badIterator  = new ArrayIterator($this->badArray);
     }
 
     public function test(): void
@@ -85,6 +85,6 @@ class EveryTest extends AbstractTestCase
     {
         InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
 
-        return $value == 'value' && \is_numeric($key);
+        return $value === 'value' && \is_numeric($key);
     }
 }

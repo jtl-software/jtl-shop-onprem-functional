@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -19,7 +21,7 @@ namespace Functional;
  * @return callable a flipped version of the given function
  * @no-named-arguments
  */
-function flip(callable $callback)
+function flip(callable $callback): callable
 {
     return static fn() => $callback(...\array_reverse(\func_get_args()));
 }

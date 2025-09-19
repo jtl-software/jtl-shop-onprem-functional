@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -17,11 +19,9 @@ use Traversable;
  * Takes a collection and returns the product of all elements
  *
  * @param Traversable|array $collection
- * @param int|float         $initial
- * @return int|float
  * @no-named-arguments
  */
-function product($collection, $initial = 1)
+function product($collection, float|int $initial = 1): float|int
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

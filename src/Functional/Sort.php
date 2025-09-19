@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -22,7 +24,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function sort($collection, callable $callback, $preserveKeys = false)
+function sort($collection, callable $callback, bool $preserveKeys = false): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
     InvalidArgumentException::assertBoolean($preserveKeys, __FUNCTION__, 3);

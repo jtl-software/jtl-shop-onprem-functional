@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -18,24 +20,23 @@ use function Functional\tail;
 
 class TailTest extends AbstractTestCase
 {
-    /** @var string[] */
-    private $badArray;
+    /** @var int[] */
+    private array $badArray;
 
-    /** @var Traversable */
-    private $badIterator;
+    private Traversable $badIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = [1, 2, 3, 4];
+        $this->list         = [1, 2, 3, 4];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->badArray = [-1, 0, 1];
-        $this->badIterator = new ArrayIterator($this->badArray);
+        $this->badArray     = [-1, 0, 1];
+        $this->badIterator  = new ArrayIterator($this->badArray);
     }
 
     public function test(): void
     {
-        $fn = function ($v, $k, $collection) {
+        $fn = function ($v, $k, $collection): bool {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
             return $v > 2;
         };
@@ -49,13 +50,13 @@ class TailTest extends AbstractTestCase
     public function testWithoutCallback(): void
     {
         self::assertSame([1 => 2, 2 => 3, 3 => 4], tail($this->list));
-        self::assertSame([1 => 2, 2 => 3, 3 => 4], tail($this->list, null));
+        self::assertSame([1 => 2, 2 => 3, 3 => 4], tail($this->list));
         self::assertSame([1 => 2, 2 => 3, 3 => 4], tail($this->listIterator));
-        self::assertSame([1 => 2, 2 => 3, 3 => 4], tail($this->listIterator, null));
+        self::assertSame([1 => 2, 2 => 3, 3 => 4], tail($this->listIterator));
         self::assertSame([1 => 0, 2 => 1], tail($this->badArray));
-        self::assertSame([1 => 0, 2 => 1], tail($this->badArray, null));
+        self::assertSame([1 => 0, 2 => 1], tail($this->badArray));
         self::assertSame([1 => 0, 2 => 1], tail($this->badIterator));
-        self::assertSame([1 => 0, 2 => 1], tail($this->badIterator, null));
+        self::assertSame([1 => 0, 2 => 1], tail($this->badIterator));
     }
 
     public function testPassNonCallable(): void

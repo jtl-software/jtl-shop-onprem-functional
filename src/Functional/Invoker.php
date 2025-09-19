@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -20,7 +22,7 @@ use Functional\Exceptions\InvalidArgumentException;
  * @return callable
  * @no-named-arguments
  */
-function invoker($methodName, array $arguments = [])
+function invoker($methodName, array $arguments = []): callable
 {
     InvalidArgumentException::assertMethodName($methodName, __FUNCTION__, 1);
 

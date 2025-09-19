@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -27,7 +29,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function partition($collection, callable ...$callbacks)
+function partition($collection, callable ...$callbacks): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -23,7 +25,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function take_left($collection, $count)
+function take_left($collection, int $count): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
     InvalidArgumentException::assertPositiveInteger($count, __FUNCTION__, 2);

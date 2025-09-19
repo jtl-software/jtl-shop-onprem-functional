@@ -8,17 +8,14 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use function Functional\tap;
 
 class TapTest extends AbstractTestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function testPassNonCallable(): void
     {
         $this->expectCallableArgumentError('Functional\tap', 2);
@@ -27,7 +24,7 @@ class TapTest extends AbstractTestCase
 
     public function testTap(): void
     {
-        $input = new \stdClass();
+        $input           = new \stdClass();
         $input->property = 'foo';
 
         $output = tap($input, function ($o) {

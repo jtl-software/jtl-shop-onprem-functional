@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
@@ -17,11 +19,11 @@ use Traversable;
  * Select the specified keys from the array
  *
  * @param Traversable|array $collection
- * @param array             $keys
- * @return array
+ * @param array<mixed>      $keys
+ * @return array<mixed>
  * @no-named-arguments
  */
-function select_keys($collection, array $keys)
+function select_keys($collection, array $keys): array
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 

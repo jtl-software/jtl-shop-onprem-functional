@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 /**
@@ -19,7 +21,7 @@ namespace Functional;
  * @see https://github.com/facebook/hhvm/issues/6954
  * @no-named-arguments
  */
-function compose(...$functions)
+function compose(...$functions): callable
 {
     return \array_reduce(
         $functions,

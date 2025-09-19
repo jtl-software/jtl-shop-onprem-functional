@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -19,24 +21,23 @@ use function Functional\some;
 class SomeTest extends AbstractTestCase
 {
     /** @var string[] */
-    private $goodArray;
+    private array $goodArray;
 
-    /** @var Traversable|string[] */
-    private $goodIterator;
+    /** @var Traversable<string[]> */
+    private Traversable $goodIterator;
 
     /** @var string[] */
-    private $badArray;
+    private array $badArray;
 
-    /** @var Traversable|string[] */
-    private $badIterator;
+    private Traversable $badIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->goodArray = ['value', 'wrong'];
+        $this->goodArray    = ['value', 'wrong'];
         $this->goodIterator = new ArrayIterator($this->goodArray);
-        $this->badArray = ['wrong', 'wrong', 'wrong'];
-        $this->badIterator = new ArrayIterator($this->badArray);
+        $this->badArray     = ['wrong', 'wrong', 'wrong'];
+        $this->badIterator  = new ArrayIterator($this->badArray);
     }
 
     public function test(): void
@@ -84,6 +85,6 @@ class SomeTest extends AbstractTestCase
     public function functionalCallback($value, $key, $collection): bool
     {
         InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
-        return $value == 'value' && $key === 0;
+        return $value === 'value' && $key === 0;
     }
 }

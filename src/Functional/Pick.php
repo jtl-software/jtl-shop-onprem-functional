@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional;
 
 use ArrayAccess;
@@ -24,7 +26,7 @@ use Functional\Exceptions\InvalidArgumentException;
  * @return mixed
  * @no-named-arguments
  */
-function pick($collection, $index, $default = null, ?callable $callback = null)
+function pick($collection, mixed $index, mixed $default = null, ?callable $callback = null): mixed
 {
     InvalidArgumentException::assertArrayAccess($collection, __FUNCTION__, 1);
 

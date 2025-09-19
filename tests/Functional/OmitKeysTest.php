@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -39,7 +41,7 @@ class OmitKeysTest extends AbstractTestCase
 
     public function testPassNonArrayOrTraversable(): void
     {
-        $this->expectArgumentError("Functional\omit_keys() expects parameter 1 to be array or instance of Traversable");
-        omit_keys(new \stdclass(), []);
+        $this->expectArgumentError('Functional\omit_keys() expects parameter 1 to be array or instance of Traversable');
+        omit_keys(new \stdClass(), []);
     }
 }

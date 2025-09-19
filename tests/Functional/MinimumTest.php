@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -20,9 +22,9 @@ class MinimumTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = [1, "foo", 5.1, 5, "5.2", true, false, [], new stdClass()];
+        $this->list         = [1, 'foo', 5.1, 5, '5.2', true, false, [], new stdClass()];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = [
+        $this->hash         = [
             'k1' => 1,
             'k2' => '5.2',
             'k3' => 5,
@@ -51,7 +53,7 @@ class MinimumTest extends AbstractTestCase
 
     public function testSpecialCaseSameValueDifferentTypes(): void
     {
-        self::assertSame(0, minimum([0, 1, 0.0, 1.0, "0", "1", "0.0", "1.0"]));
+        self::assertSame(0, minimum([0, 1, 0.0, 1.0, '0', '1', '0.0', '1.0']));
     }
 
     public function testPassNoCollection(): void

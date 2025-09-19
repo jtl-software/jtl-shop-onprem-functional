@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use BadFunctionCallException;
@@ -21,9 +23,16 @@ class ZipAllTest extends AbstractTestCase
         self::assertSame([], zip_all());
         self::assertSame([], zip_all([]));
         self::assertSame([], zip_all([], [], []));
-        self::assertSame([], zip_all([], [], function () {
-            throw new BadFunctionCallException('Should not be called');
-        }));
+        self::assertSame(
+            [],
+            zip_all(
+                [],
+                [],
+                function (): void {
+                    throw new BadFunctionCallException('Should not be called');
+                }
+            )
+        );
     }
 
     public function testMissingKeys(): void

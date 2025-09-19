@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -20,9 +22,9 @@ class GroupTest extends AbstractTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value1', 'value2', 'value3', 'value4'];
+        $this->list         = ['value1', 'value2', 'value3', 'value4'];
         $this->listIterator = new ArrayIterator($this->list);
-        $this->hash = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3'];
+        $this->hash         = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val3'];
         $this->hashIterator = new ArrayIterator($this->hash);
     }
 
@@ -30,7 +32,7 @@ class GroupTest extends AbstractTestCase
     {
         $fn = function ($v, $k, $collection) {
             InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
-            return (\is_int($k) ? ($k % 2 == 0) : ($v[3] % 2 == 0)) ? 'foo' : '';
+            return (\is_int($k) ? ($k % 2 === 0) : ($v[3] % 2 === 0)) ? 'foo' : '';
         };
         self::assertSame(['foo' => [0 => 'value1', 2 => 'value3'], '' => [1 => 'value2', 3 => 'value4']], group($this->list, $fn));
         self::assertSame(['foo' => [0 => 'value1', 2 => 'value3'], '' => [1 => 'value2', 3 => 'value4']], group($this->listIterator, $fn));
@@ -40,9 +42,9 @@ class GroupTest extends AbstractTestCase
 
     public function testExceptionIsThrownWhenCallbacksReturnsInvalidKey(): void
     {
-        $array = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6'];
+        $array  = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6'];
         $keyMap = [true, 1, -1, 2, 'str', null];
-        $fn = function ($v, $k, $collection) use (&$keyMap) {
+        $fn     = function ($v, $k, $collection) use (&$keyMap) {
             return $keyMap[$k];
         };
         $result = [
@@ -56,9 +58,9 @@ class GroupTest extends AbstractTestCase
         self::assertSame($result, group(new ArrayIterator($array), $fn));
 
         $invalidTypes = [
-                          'resource' => \stream_context_create(),
-                          'object'   => new \stdClass(),
-                          'array'    => []
+            'resource' => \stream_context_create(),
+            'object'   => new \stdClass(),
+            'array'    => []
         ];
 
         foreach ($invalidTypes as $type => $value) {

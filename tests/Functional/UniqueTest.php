@@ -8,6 +8,8 @@
  * @link      https://github.com/lstrojny/functional-php
  */
 
+declare(strict_types=1);
+
 namespace Functional\Tests;
 
 use ArrayIterator;
@@ -17,21 +19,20 @@ use function Functional\unique;
 
 class UniqueTest extends AbstractTestCase
 {
-    /** @var array */
-    private $mixedTypesArray;
+    /** @var array<mixed> */
+    private array $mixedTypesArray;
 
-    /** @var Traversable */
-    private $mixedTypesIterator;
+    private Traversable $mixedTypesIterator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->list = ['value1', 'value2', 'value1', 'value'];
-        $this->listIterator = new ArrayIterator($this->list);
-        $this->mixedTypesArray = [1, '1', '2', 2, '3', 4];
+        $this->list               = ['value1', 'value2', 'value1', 'value'];
+        $this->listIterator       = new ArrayIterator($this->list);
+        $this->mixedTypesArray    = [1, '1', '2', 2, '3', 4];
         $this->mixedTypesIterator = new ArrayIterator($this->mixedTypesArray);
-        $this->hash = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val2'];
-        $this->hashIterator = new ArrayIterator($this->hash);
+        $this->hash               = ['k1' => 'val1', 'k2' => 'val2', 'k3' => 'val2'];
+        $this->hashIterator       = new ArrayIterator($this->hash);
     }
 
     public function testDefaultBehavior(): void
@@ -51,14 +52,10 @@ class UniqueTest extends AbstractTestCase
 
     public function testUnifyingByClosure(): void
     {
-        $fn = static function ($value, $key, $collection) {
-            return $key === 0 ? 'zero' : 'else';
-        };
+        $fn = static fn($value, $key, $collection): string => $key === 0 ? 'zero' : 'else';
         self::assertSame([0 => 'value1', 1 => 'value2'], unique($this->list, $fn));
         self::assertSame([0 => 'value1', 1 => 'value2'], unique($this->listIterator, $fn));
-        $fn = static function ($value, $key, $collection) {
-            return 0;
-        };
+        $fn = static fn($value, $key, $collection) => 0;
         self::assertSame(['k1' => 'val1'], unique($this->hash, $fn));
         self::assertSame(['k1' => 'val1'], unique($this->hashIterator, $fn));
     }
@@ -70,9 +67,7 @@ class UniqueTest extends AbstractTestCase
         self::assertSame([0 => 1, 2 => '2', 4 => '3', 5 => 4], unique($this->mixedTypesIterator, null, false));
         self::assertSame([1, '1', '2', 2, '3', 4], unique($this->mixedTypesIterator));
 
-        $fn = function ($value, $key, $collection) {
-            return $value;
-        };
+        $fn = fn($value, $key, $collection) => $value;
 
         self::assertSame([0 => 1, 2 => '2', 4 => '3', 5 => 4], unique($this->mixedTypesArray, $fn, false));
         self::assertSame([1, '1', '2', 2, '3', 4], unique($this->mixedTypesArray, $fn));
@@ -83,9 +78,9 @@ class UniqueTest extends AbstractTestCase
     public function testPassingNullAsCallback(): void
     {
         self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->list));
-        self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->list, null));
+        self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->list));
         self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->list, null, false));
-        self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->list, null, true));
+        self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->list));
     }
 
     public function testExceptionIsThrownInArray(): void
