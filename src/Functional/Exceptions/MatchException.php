@@ -15,7 +15,10 @@ namespace Functional\Exceptions;
 /** @internal */
 class MatchException extends InvalidArgumentException
 {
-    public static function assert(array $conditions, $callee): void
+    /**
+     * @param array<mixed> $conditions
+     */
+    public static function assert(array $conditions, string $callee): void
     {
         foreach ($conditions as $key => $condition) {
             self::assertArray($key, $condition, $callee);
@@ -24,7 +27,7 @@ class MatchException extends InvalidArgumentException
         }
     }
 
-    private static function assertArray($key, $condition, $callee): void
+    private static function assertArray(int $key, mixed $condition, string $callee): void
     {
         if (!\is_array($condition)) {
             throw new self(
@@ -38,7 +41,7 @@ class MatchException extends InvalidArgumentException
         }
     }
 
-    private static function assertLength($key, $condition, $callee): void
+    private static function assertLength(int $key, mixed $condition, string $callee): void
     {
         if (\count($condition) < 2) {
             throw new self(
@@ -52,7 +55,7 @@ class MatchException extends InvalidArgumentException
         }
     }
 
-    private static function assertCallables($key, $condition, $callee): void
+    private static function assertCallables(int $key, mixed $condition, string $callee): void
     {
         if (!\is_callable($condition[0]) || !\is_callable($condition[1])) {
             throw new self(

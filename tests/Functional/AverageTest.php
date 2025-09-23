@@ -84,6 +84,7 @@ class AverageTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\average() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         average('invalidCollection');
     }
 }

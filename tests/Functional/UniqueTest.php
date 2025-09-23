@@ -41,9 +41,7 @@ class UniqueTest extends AbstractTestCase
         self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->listIterator));
         self::assertSame(['k1' => 'val1', 'k2' => 'val2'], unique($this->hash));
         self::assertSame(['k1' => 'val1', 'k2' => 'val2'], unique($this->hashIterator));
-        $fn = function ($value, $key, $collection) {
-            return $value;
-        };
+        $fn = static fn($value, $key, $collection) => $value;
         self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->list, $fn));
         self::assertSame([0 => 'value1', 1 => 'value2', 3 => 'value'], unique($this->listIterator, $fn));
         self::assertSame(['k1' => 'val1', 'k2' => 'val2'], unique($this->hash, $fn));
@@ -114,12 +112,14 @@ class UniqueTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\unique() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         unique('invalidCollection', 'strlen');
     }
 
     public function testPassNonCallableUndefinedFunction(): void
     {
         $this->expectCallableArgumentError('Functional\unique', 2);
+        /** @noinspection PhpParamsInspection */
         unique($this->list, 'undefinedFunction');
     }
 }

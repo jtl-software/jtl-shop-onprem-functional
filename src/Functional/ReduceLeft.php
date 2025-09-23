@@ -16,9 +16,9 @@ use Functional\Exceptions\InvalidArgumentException;
 use Traversable;
 
 /**
- * @param Traversable|array $collection
- * @param callable          $callback
- * @param mixed             $initial
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
+ * @param mixed                           $initial
  * @return mixed
  * @no-named-arguments
  */

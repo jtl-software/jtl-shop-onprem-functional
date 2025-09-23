@@ -18,7 +18,7 @@ use Traversable;
 /**
  * Takes a collection and returns the sum of the elements
  *
- * @param Traversable|array $collection
+ * @param Traversable<mixed>|array<mixed> $collection
  * @no-named-arguments
  */
 function sum($collection, float|int $initial = 0): float|int

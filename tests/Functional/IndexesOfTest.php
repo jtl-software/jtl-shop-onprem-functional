@@ -45,6 +45,7 @@ class IndexesOfTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\indexes_of() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         indexes_of('invalidCollection', 'idx');
     }
 }

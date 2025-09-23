@@ -19,9 +19,9 @@ use Traversable;
 /**
  * Extract a property from a collection of objects.
  *
- * @param Traversable|array $collection
- * @param mixed             $propertyName
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param mixed                           $propertyName
+ * @return array<mixed>
  * @no-named-arguments
  */
 function pluck($collection, mixed $propertyName): array
@@ -30,16 +30,13 @@ function pluck($collection, mixed $propertyName): array
     InvalidArgumentException::assertPropertyName($propertyName, __FUNCTION__, 2);
 
     $aggregation = [];
-
     foreach ($collection as $index => $element) {
         $value = null;
-
         if (\is_object($element) && isset($element->{$propertyName})) {
             $value = $element->{$propertyName};
         } elseif ((\is_array($element) || $element instanceof ArrayAccess) && isset($element[$propertyName])) {
             $value = $element[$propertyName];
         }
-
         $aggregation[$index] = $value;
     }
 

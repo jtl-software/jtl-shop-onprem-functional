@@ -41,6 +41,7 @@ class SelectKeysTest extends AbstractTestCase
     public function testPassNonArrayOrTraversable(): void
     {
         $this->expectArgumentError('Functional\select_keys() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         select_keys(new \stdClass(), []);
     }
 }

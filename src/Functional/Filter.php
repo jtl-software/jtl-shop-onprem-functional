@@ -18,9 +18,9 @@ use Traversable;
 /**
  * Alias of Functional\select()
  *
- * @param Traversable|array $collection
- * @param callable          $callback
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
+ * @return array<mixed>
  * @no-named-arguments
  */
 function filter($collection, callable $callback): array

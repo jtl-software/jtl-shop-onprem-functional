@@ -16,10 +16,10 @@ namespace Functional;
  * Calls the method named by $methodName on $object. Any extra arguments passed to invoke_if will be
  * forwarded on to the method invocation. If $method is not callable on $object, $defaultValue is returned.
  *
- * @param mixed  $object
- * @param string $methodName
- * @param array  $methodArguments
- * @param mixed  $defaultValue
+ * @param mixed        $object
+ * @param string       $methodName
+ * @param array<mixed> $methodArguments
+ * @param mixed        $defaultValue
  * @return mixed
  * @no-named-arguments
  */

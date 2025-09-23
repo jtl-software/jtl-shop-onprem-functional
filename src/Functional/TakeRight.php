@@ -21,11 +21,10 @@ use Traversable;
  * This function will reorder and reset the integer array indices by default. This behaviour can be changed by setting
  * preserveKeys to TRUE. String keys are always preserved, regardless of this parameter.
  *
- * @param Traversable|array $collection
- * @param int               $count
- * @param bool              $preserveKeys
- *
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param int                             $count
+ * @param bool                            $preserveKeys
+ * @return array<mixed>
  * @no-named-arguments
  */
 function take_right($collection, int $count, bool $preserveKeys = false): array

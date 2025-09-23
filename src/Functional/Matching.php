@@ -17,7 +17,7 @@ use Functional\Exceptions\MatchException;
 /**
  * Performs an operation checking for the given conditions
  *
- * @param array $conditions the conditions to check against
+ * @param array<mixed> $conditions the conditions to check against
  * @return callable the function that calls the callable of the first truthy condition
  * @no-named-arguments
  */
@@ -29,7 +29,6 @@ function matching(array $conditions): callable
         if (empty($conditions)) {
             return null;
         }
-
         [$if, $then] = head($conditions);
 
         return if_else($if, $then, matching(tail($conditions)))($value);

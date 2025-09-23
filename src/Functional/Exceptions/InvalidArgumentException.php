@@ -237,6 +237,9 @@ class InvalidArgumentException extends \InvalidArgumentException
         }
     }
 
+    /**
+     * @param array<mixed> $args
+     */
     public static function assertResolvablePlaceholder(array $args, int $position): void
     {
         if (\count($args) === 0) {

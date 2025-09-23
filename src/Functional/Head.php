@@ -18,8 +18,8 @@ use Traversable;
 /**
  * Alias for Functional\first
  *
- * @param Traversable|array $collection
- * @param callable|null     $callback
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable|null                   $callback
  * @return mixed
  * @no-named-arguments
  */

@@ -19,9 +19,9 @@ use Traversable;
  * Calls the method named by $methodName on first object in the collection containing a callable method named
  * $methodName. Any extra arguments passed to invoke will be forwarded on to the method invocation.
  *
- * @param Traversable|array $collection
- * @param string            $methodName
- * @param array             $arguments
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param string                          $methodName
+ * @param array<mixed>                    $arguments
  * @return mixed
  * @no-named-arguments
  */

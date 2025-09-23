@@ -20,8 +20,8 @@ use Traversable;
  * function returns as soon as it finds an acceptable element, and doesn't traverse the entire collection. Callback
  * arguments will be element, index, collection
  *
- * @param Traversable|array $collection
- * @param callable|null     $callback
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable|null                   $callback
  * @return mixed
  * @no-named-arguments
  */

@@ -18,7 +18,7 @@ use Traversable;
 /**
  * Takes a collection and returns the product of all elements
  *
- * @param Traversable|array $collection
+ * @param Traversable<mixed>|array<mixed> $collection
  * @no-named-arguments
  */
 function product($collection, float|int $initial = 1): float|int

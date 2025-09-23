@@ -46,15 +46,14 @@ class LastIndexOfTest extends AbstractTestCase
     {
         self::assertSame(
             3,
-            last_index_of($this->list, function ($element) {
-                return $element;
-            })
+            last_index_of($this->list, fn($element) => $element)
         );
     }
 
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\last_index_of() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         last_index_of('invalidCollection', 'idx');
     }
 }

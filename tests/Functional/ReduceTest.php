@@ -181,12 +181,14 @@ class ReduceTest extends AbstractTestCase
     public function testPassNoCollectionToReduceLeft(): void
     {
         $this->expectArgumentError('Functional\reduce_left() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         reduce_left('invalidCollection', 'strlen');
     }
 
     public function testPassNonCallableToReduceLeft(): void
     {
         $this->expectCallableArgumentError('Functional\reduce_left', 2);
+        /** @noinspection PhpParamsInspection */
         reduce_left($this->list, 'undefinedFunction');
     }
 

@@ -19,8 +19,8 @@ use Traversable;
  * Looks through each element in the collection, returning the last one that passes a truthy test (callback).
  * Callback arguments will be element, index, collection
  *
- * @param Traversable|array $collection
- * @param callable|null     $callback
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable|null                   $callback
  * @return mixed
  * @no-named-arguments
  */

@@ -50,6 +50,7 @@ class NoneTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\none() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         none('invalidCollection', 'strlen');
     }
 

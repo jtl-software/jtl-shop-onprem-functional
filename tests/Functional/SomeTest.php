@@ -65,6 +65,7 @@ class SomeTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\some() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         some('invalidCollection', 'strlen');
     }
 

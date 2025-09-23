@@ -18,8 +18,8 @@ use Traversable;
 /**
  * Returns an array containing the elements of the list without its last element.
  *
- * @param Traversable|array $collection
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @return array<mixed>
  * @no-named-arguments
  */
 function but_last($collection): array

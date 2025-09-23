@@ -18,7 +18,7 @@ use Traversable;
 /**
  * Returns the average of all numeric values in the array or null if no numeric value was found
  *
- * @param Traversable|array $collection
+ * @param Traversable<mixed>|array<mixed> $collection
  * @return null|float|int
  * @no-named-arguments
  */

@@ -69,6 +69,7 @@ class TrueTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\true() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         F\true('invalidCollection');
     }
 }

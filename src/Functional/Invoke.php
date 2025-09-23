@@ -19,10 +19,10 @@ use Traversable;
  * Calls the method named by $methodName on each value in the collection. Any extra arguments passed to invoke will be
  * forwarded on to the method invocation.
  *
- * @param Traversable|array $collection
- * @param string            $methodName
- * @param array             $arguments
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param string                          $methodName
+ * @param array<mixed>                    $arguments
+ * @return array<mixed>
  * @no-named-arguments
  */
 function invoke($collection, string $methodName, array $arguments = []): array
@@ -30,15 +30,12 @@ function invoke($collection, string $methodName, array $arguments = []): array
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
     $aggregation = [];
-
     foreach ($collection as $index => $element) {
-        $value = null;
-
+        $value    = null;
         $callback = [$element, $methodName];
         if (\is_callable($callback)) {
             $value = $callback(...$arguments);
         }
-
         $aggregation[$index] = $value;
     }
 

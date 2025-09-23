@@ -83,12 +83,14 @@ class FlatMapTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\flat_map() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         flat_map('invalidCollection', 'strlen');
     }
 
     public function testPassNonCallable(): void
     {
         $this->expectCallableArgumentError('Functional\flat_map', 2);
+        /** @noinspection PhpParamsInspection */
         flat_map($this->list, 'undefinedFunction');
     }
 }

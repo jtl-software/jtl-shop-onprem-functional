@@ -18,7 +18,7 @@ use Traversable;
 /**
  * Takes a collection and returns the difference of all elements
  *
- * @param Traversable|array $collection
+ * @param Traversable<mixed>|array<mixed> $collection
  * @no-named-arguments
  */
 function difference($collection, float|int $initial = 0): float|int

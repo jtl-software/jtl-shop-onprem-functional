@@ -24,9 +24,9 @@ use Traversable;
  * Elements are not re-ordered and have the same index they had in the
  * original array.
  *
- * @param Traversable|array $collection
- * @param callable          ...$callbacks
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        ...$callbacks
+ * @return array<mixed>
  * @no-named-arguments
  */
 function partition($collection, callable ...$callbacks): array

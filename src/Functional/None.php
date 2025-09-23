@@ -19,8 +19,8 @@ use Traversable;
  * Returns true if all of the elements in the collection pass the callback falsy test. Opposite of Functional\all().
  * Callback arguments will be element, index, collection.
  *
- * @param Traversable|array $collection
- * @param callable|null     $callback
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable|null                   $callback
  * @return bool
  * @no-named-arguments
  */

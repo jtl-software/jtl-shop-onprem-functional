@@ -19,9 +19,9 @@ use Traversable;
  * Insert a given value between each element of a collection.
  * Indices are not preserved.
  *
- * @param Traversable|array $collection
- * @param mixed             $glue
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param mixed                           $glue
+ * @return array<mixed>
  * @no-named-arguments
  */
 function intersperse($collection, mixed $glue): array

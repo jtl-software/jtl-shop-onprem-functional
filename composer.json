@@ -14,6 +14,9 @@
     {
       "name": "Max Beutel",
       "email": "nash12@gmail.com"
+    },
+    {
+      "name": "JTl-Software-GmbH"
     }
   ],
   "require": {
@@ -22,7 +25,8 @@
   "require-dev": {
     "squizlabs/php_codesniffer": "^4.0",
     "phpunit/phpunit": "^7.0 || ^8.0 || ^9.5",
-    "friendsofphp/php-cs-fixer": "^3.0"
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "phpstan/phpstan": "^2.1"
   },
   "autoload": {
     "psr-4": {
@@ -132,7 +136,9 @@
     }
   },
   "scripts": {
+    "test": "vendor/bin/phpunit",
     "tests": "vendor/bin/phpunit",
+    "phpstan": "phpstan analyse",
     "coding-style": "vendor/bin/phpcs && vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php_cs.dist",
     "clear": "rm -rf vendor/"
   }

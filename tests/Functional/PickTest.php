@@ -50,13 +50,14 @@ class PickTest extends AbstractTestCase
     public function testInvalidCollectionShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-
+        /** @noinspection PhpParamsInspection */
         pick(null, '');
     }
 
     public function testInvalidCallbackShouldThrowException(): void
     {
         $this->expectCallableArgumentError('Functional\pick', 4);
+        /** @noinspection PhpParamsInspection */
         pick($this->array_1, '', null, 'not-a-callback');
     }
 

@@ -57,6 +57,7 @@ class ProductTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\product() expects parameter 1 to be array or instance of Traversable');
-        product('invalidCollection', 1);
+        /** @noinspection PhpParamsInspection */
+        product('invalidCollection');
     }
 }

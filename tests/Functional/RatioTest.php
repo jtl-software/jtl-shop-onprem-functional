@@ -57,6 +57,7 @@ class RatioTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\ratio() expects parameter 1 to be array or instance of Traversable');
-        ratio('invalidCollection', 1);
+        /** @noinspection PhpParamsInspection */
+        ratio('invalidCollection');
     }
 }

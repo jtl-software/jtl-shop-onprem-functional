@@ -18,10 +18,10 @@ use Traversable;
 /**
  * Sorts a collection with a user-defined function, optionally preserving array keys
  *
- * @param Traversable|array $collection
- * @param callable          $callback
- * @param bool              $preserveKeys
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
+ * @param bool                            $preserveKeys
+ * @return array<mixed>
  * @no-named-arguments
  */
 function sort($collection, callable $callback, bool $preserveKeys = false): array

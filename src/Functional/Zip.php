@@ -18,8 +18,8 @@ use Traversable;
 /**
  * Recombines arrays by index and applies a callback optionally
  *
- * @param array|Traversable ...$args One or more callbacks
- * @return array
+ * @param array<mixed>|Traversable<mixed> ...$args One or more callbacks
+ * @return array<mixed>
  * @no-named-arguments
  */
 function zip(...$args): array
@@ -28,24 +28,19 @@ function zip(...$args): array
     if (\is_callable(\end($args))) {
         $callback = \array_pop($args);
     }
-
     foreach ($args as $position => $arg) {
         InvalidArgumentException::assertCollection($arg, __FUNCTION__, $position + 1);
     }
-
     $result = [];
     foreach ((array)\reset($args) as $index => $value) {
         $zipped = [];
-
         foreach ($args as $arg) {
             $zipped[] = $arg[$index] ?? null;
         }
-
         if ($callback !== null) {
             /** @var callable $callback */
             $zipped = $callback(...$zipped);
         }
-
         $result[$index] = $zipped;
     }
 

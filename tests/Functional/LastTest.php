@@ -78,6 +78,7 @@ class LastTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\last() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         last('invalidCollection', 'strlen');
     }
 }

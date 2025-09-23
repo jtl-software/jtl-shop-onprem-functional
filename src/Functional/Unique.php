@@ -18,10 +18,10 @@ use Traversable;
 /**
  * Returns an array of unique elements
  *
- * @param Traversable|array $collection
- * @param callable|null     $callback
- * @param bool              $strict
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable|null                   $callback
+ * @param bool                            $strict
+ * @return array<mixed>
  * @no-named-arguments
  */
 function unique($collection, ?callable $callback = null, bool $strict = true): array
@@ -31,12 +31,10 @@ function unique($collection, ?callable $callback = null, bool $strict = true): a
     $indexes     = [];
     $aggregation = [];
     foreach ($collection as $key => $element) {
+        $index = $element;
         if ($callback) {
             $index = $callback($element, $key, $collection);
-        } else {
-            $index = $element;
         }
-
         if (!\in_array($index, $indexes, $strict)) {
             $aggregation[$key] = $element;
 

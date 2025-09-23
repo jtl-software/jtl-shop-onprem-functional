@@ -67,6 +67,7 @@ class EntriesFromEntriesTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\entries() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         entries('invalidCollection');
     }
 }

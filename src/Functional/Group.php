@@ -18,9 +18,9 @@ use Traversable;
 /**
  * Groups a collection by index returned by callback.
  *
- * @param Traversable|array $collection
- * @param callable          $callback
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
+ * @return array<mixed>
  * @no-named-arguments
  */
 function group($collection, callable $callback): array

@@ -58,6 +58,7 @@ class RejectTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\reject() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         reject('invalidCollection', 'strlen');
     }
 

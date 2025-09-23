@@ -17,9 +17,9 @@ use Functional\Exceptions\InvalidArgumentException;
 /**
  * Returns a function that expects an object as the first param and tries to invoke the given method on it
  *
- * @param string $methodName
- * @param array  $arguments
- * @param mixed  $defaultValue
+ * @param string       $methodName
+ * @param array<mixed> $arguments
+ * @param mixed        $defaultValue
  * @return callable
  * @no-named-arguments
  */

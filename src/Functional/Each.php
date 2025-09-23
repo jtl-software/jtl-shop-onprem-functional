@@ -19,8 +19,8 @@ use Traversable;
  * Iterates over a collection of elements, yielding each in turn to a callback function. Each invocation of $callback
  * is called with three arguments: (element, index, collection)
  *
- * @param Traversable|array $collection
- * @param callable          $callback
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
  * @no-named-arguments
  */
 function each($collection, callable $callback): void

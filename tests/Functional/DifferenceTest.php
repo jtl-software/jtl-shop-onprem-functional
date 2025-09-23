@@ -59,6 +59,7 @@ class DifferenceTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\difference() expects parameter 1 to be array or instance of Traversable');
-        difference('invalidCollection', 1   );
+        /** @noinspection PhpParamsInspection */
+        difference('invalidCollection');
     }
 }

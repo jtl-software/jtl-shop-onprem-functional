@@ -89,12 +89,14 @@ class PartitionTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\partition() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         partition('invalidCollection', 'strlen');
     }
 
     public function testPassNonCallable(): void
     {
         $this->expectCallableArgumentError('Functional\partition', 2);
+        /** @noinspection PhpParamsInspection */
         partition($this->list, 'undefinedFunction');
     }
 }

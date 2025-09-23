@@ -20,7 +20,7 @@ class AryTest extends AbstractTestCase
 {
     public function test(): void
     {
-        $f = static fn($a = 0, $b = 0, $c = 0) => $a + $b + $c;
+        $f = static fn(int $a = 0, int $b = 0, int $c = 0): int => $a + $b + $c;
 
         self::assertSame(5, $f(5));
         self::assertSame(5, ary($f, 1)(5));
@@ -32,7 +32,7 @@ class AryTest extends AbstractTestCase
     public function testException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $f = fn($a = 0, $b = 0, $c = 0) => $a + $b + $c;
+        $f = fn(int $a = 0, int $b = 0, int $c = 0): int => $a + $b + $c;
 
         ary($f, 0)(5);
     }

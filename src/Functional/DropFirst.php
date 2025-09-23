@@ -18,9 +18,9 @@ use Traversable;
 /**
  * Drop all elements from a collection until callback returns false
  *
- * @param Traversable|array $collection
- * @param callable          $callback
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
+ * @return array<mixed>
  * @no-named-arguments
  */
 function drop_first($collection, callable $callback): array

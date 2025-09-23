@@ -18,9 +18,9 @@ use Traversable;
 /**
  * Drop all elements from a collection after callback returns true
  *
- * @param Traversable|array $collection
- * @param callable          $callback
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
+ * @return array<mixed>
  * @no-named-arguments
  */
 function drop_last($collection, callable $callback): array

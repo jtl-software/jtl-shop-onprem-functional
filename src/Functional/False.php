@@ -18,7 +18,7 @@ use Traversable;
 /**
  * Returns true if all elements of the collection are strictly false
  *
- * @param Traversable|array $collection
+ * @param Traversable<mixed>|array<mixed> $collection
  * @return bool
  * @no-named-arguments
  */

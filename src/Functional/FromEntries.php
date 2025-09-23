@@ -19,8 +19,8 @@ use Traversable;
  * Inspired by JavaScript’s `Object.fromEntries`,
  * convert an array of key-value pairs into a key-value map
  *
- * @param Traversable|array $collection
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @return array<mixed>
  * @no-named-arguments
  * @see entries
  */

@@ -67,6 +67,7 @@ class InvokeFirstTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\invoke_first() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         invoke_first('invalidCollection', 'method');
     }
 
@@ -74,6 +75,7 @@ class InvokeFirstTest extends AbstractTestCase
     {
         $this->expectException('DomainException');
         $this->expectExceptionMessage('Callback exception');
+        /** @noinspection PhpParamsInspection */
         invoke_first($this->list, 'exception');
     }
 

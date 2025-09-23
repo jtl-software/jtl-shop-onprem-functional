@@ -19,9 +19,9 @@ use Traversable;
  * Returns a list of array indexes, either matching the predicate or strictly equal to the the passed value. Returns an
  * empty array if no values were found.
  *
- * @param Traversable|array $collection
- * @param mixed|callable    $value
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param mixed|callable                  $value
+ * @return array<mixed>
  * @no-named-arguments
  */
 function indexes_of($collection, mixed $value): array

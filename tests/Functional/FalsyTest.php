@@ -73,6 +73,7 @@ class FalsyTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\falsy() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         falsy('invalidCollection');
     }
 }

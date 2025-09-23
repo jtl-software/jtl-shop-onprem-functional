@@ -55,6 +55,7 @@ class FirstIndexOfTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\first_index_of() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         first_index_of('invalidCollection', 'idx');
     }
 }

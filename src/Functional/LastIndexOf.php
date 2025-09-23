@@ -18,8 +18,8 @@ use Traversable;
 /**
  * Returns the last index holding specified value in the collection. Returns false if value was not found
  *
- * @param Traversable|array $collection
- * @param mixed             $value
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param mixed                           $value
  * @return mixed
  * @no-named-arguments
  */

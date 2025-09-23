@@ -28,7 +28,6 @@ class EachTest extends AbstractTestCase
             ->setMethods(['call'])
             ->getMock();
 
-
         $this->list         = ['value0', 'value1', 'value2', 'value3'];
         $this->listIterator = new ArrayIterator($this->list);
         $this->hash         = ['k0' => 'value0', 'k1' => 'value1', 'k2' => 'value2'];
@@ -88,12 +87,14 @@ class EachTest extends AbstractTestCase
     public function testPassNonCallable(): void
     {
         $this->expectCallableArgumentError('Functional\each', 2);
+        /** @noinspection PhpParamsInspection */
         each($this->list, 'undefinedFunction');
     }
 
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\each() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         each('invalidCollection', 'strlen');
     }
 }

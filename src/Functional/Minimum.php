@@ -18,7 +18,7 @@ use Traversable;
 /**
  * Returns the minimum value of a collection
  *
- * @param Traversable|array $collection
+ * @param Traversable<mixed>|array<mixed> $collection
  * @no-named-arguments
  */
 function minimum($collection): float|int|string|null

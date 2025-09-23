@@ -42,6 +42,7 @@ class OmitKeysTest extends AbstractTestCase
     public function testPassNonArrayOrTraversable(): void
     {
         $this->expectArgumentError('Functional\omit_keys() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         omit_keys(new \stdClass(), []);
     }
 }

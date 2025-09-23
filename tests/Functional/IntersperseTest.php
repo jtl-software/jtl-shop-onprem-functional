@@ -46,6 +46,7 @@ class IntersperseTest extends AbstractTestCase
             'Functional\intersperse() expects parameter 1 to be array or ' .
             'instance of Traversable'
         );
+        /** @noinspection PhpParamsInspection */
         intersperse('invalidCollection', '-');
     }
 }

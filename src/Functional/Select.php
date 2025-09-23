@@ -19,9 +19,9 @@ use Traversable;
  * Looks through each element in the list, returning an array of all the elements that pass a truthy test (callback).
  * Opposite is Functional\reject(). Callback arguments will be element, index, collection
  *
- * @param Traversable|array $collection
- * @param callable|null     $callback
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable|null                   $callback
+ * @return array<mixed>
  * @no-named-arguments
  */
 function select($collection, ?callable $callback = null): array
@@ -29,11 +29,9 @@ function select($collection, ?callable $callback = null): array
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
     $aggregation = [];
-
     if ($callback === null) {
         $callback = '\Functional\id';
     }
-
     foreach ($collection as $index => $element) {
         if ($callback($element, $index, $collection)) {
             $aggregation[$index] = $element;

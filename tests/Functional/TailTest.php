@@ -82,6 +82,7 @@ class TailTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\tail() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         tail('invalidCollection', 'strlen');
     }
 }

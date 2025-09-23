@@ -62,6 +62,7 @@ class InvokeLastTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\invoke_last() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         invoke_last('invalidCollection', 'method');
     }
 
@@ -69,6 +70,7 @@ class InvokeLastTest extends AbstractTestCase
     {
         $this->expectException('DomainException');
         $this->expectExceptionMessage('Callback exception');
+        /** @noinspection PhpParamsInspection */
         invoke_last($this->list, 'exception');
     }
 

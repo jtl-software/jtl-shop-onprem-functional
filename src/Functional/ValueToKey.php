@@ -17,6 +17,7 @@ use Traversable;
 use WeakReference;
 
 /**
+ * @param mixed ...$any
  * @no-named-arguments
  */
 function value_to_key(...$any): string
@@ -52,7 +53,6 @@ function value_to_key(...$any): string
             return \get_class($value) . ':' . $hash . ':' . ($collisions[$hash] ?? 0);
         };
     }
-
     static $valueToRef = null;
     if (!$valueToRef) {
         $valueToRef = static function ($value, $key = null) use (&$valueToRef, $objectToRef) {

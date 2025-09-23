@@ -19,9 +19,9 @@ use Traversable;
  * Produces a new array of elements by mapping each element in collection through a transformation function (callback).
  * Callback arguments will be element, index, collection
  *
- * @param Traversable|array $collection
- * @param callable          $callback
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable                        $callback
+ * @return array<mixed>
  * @no-named-arguments
  */
 function map($collection, callable $callback): array

@@ -19,9 +19,9 @@ use Traversable;
  * Inspired by JavaScript’s `Object.entries`, and Python’s `enumerate`,
  * convert a key-value map into an array of key-value pairs
  *
- * @param Traversable|array $collection
- * @param int               $start
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param int                             $start
+ * @return array<mixed>
  * @no-named-arguments
  * @see from_entries
  */

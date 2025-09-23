@@ -72,6 +72,7 @@ class ContainsTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\contains() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         contains('invalidCollection', 'value');
     }
 }

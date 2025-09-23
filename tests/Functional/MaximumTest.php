@@ -58,6 +58,7 @@ class MaximumTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\maximum() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         maximum('invalidCollection');
     }
 }

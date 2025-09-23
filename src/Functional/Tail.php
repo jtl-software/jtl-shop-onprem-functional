@@ -19,9 +19,9 @@ use Traversable;
  * Returns all items from $collection except first element (head). Preserves $collection keys.
  * Takes an optional callback for filtering the collection.
  *
- * @param Traversable|array $collection
- * @param callable|null     $callback
- * @return array
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param callable|null                   $callback
+ * @return array<mixed>
  * @no-named-arguments
  */
 function tail($collection, ?callable $callback = null): array

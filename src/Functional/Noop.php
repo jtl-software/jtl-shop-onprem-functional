@@ -30,6 +30,6 @@ namespace Functional;
  * A no-operation function.
  * @no-named-arguments
  */
-function noop()
+function noop(): void
 {
 }

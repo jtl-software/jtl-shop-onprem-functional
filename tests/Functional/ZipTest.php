@@ -135,12 +135,14 @@ class ZipTest extends AbstractTestCase
     public function testPassNoCollectionAsFirstParam(): void
     {
         $this->expectArgumentError('Functional\zip() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         zip('invalidCollection');
     }
 
     public function testPassNoCollectionAsSecondParam(): void
     {
         $this->expectArgumentError('Functional\zip() expects parameter 2 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         zip([], 'invalidCollection');
     }
 

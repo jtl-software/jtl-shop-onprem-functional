@@ -56,6 +56,7 @@ class EveryTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\every() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         every('invalidCollection', 'strlen');
     }
 

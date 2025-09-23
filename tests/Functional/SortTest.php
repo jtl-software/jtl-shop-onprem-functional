@@ -53,12 +53,14 @@ class SortTest extends AbstractTestCase
     public function testPassNonCallable(): void
     {
         $this->expectCallableArgumentError('Functional\sort', 2);
+        /** @noinspection PhpParamsInspection */
         F\sort($this->list, 'undefinedFunction');
     }
 
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('sort() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         F\sort('invalidCollection', 'strlen');
     }
 

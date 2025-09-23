@@ -17,12 +17,12 @@ use Functional\Exceptions\InvalidArgumentException;
 /**
  * Returns a function that invokes method `$method` with arguments `$methodArguments` on the object
  *
- * @param string $methodName
- * @param array  $arguments
+ * @param string|mixed $methodName
+ * @param array<mixed> $arguments
  * @return callable
  * @no-named-arguments
  */
-function invoker($methodName, array $arguments = []): callable
+function invoker(mixed $methodName, array $arguments = []): callable
 {
     InvalidArgumentException::assertMethodName($methodName, __FUNCTION__, 1);
 

@@ -18,8 +18,8 @@ use Traversable;
 /**
  * Select the specified keys from the array
  *
- * @param Traversable|array $collection
- * @param array<mixed>      $keys
+ * @param Traversable<mixed>|array<mixed> $collection
+ * @param array<mixed>                    $keys
  * @return array<mixed>
  * @no-named-arguments
  */

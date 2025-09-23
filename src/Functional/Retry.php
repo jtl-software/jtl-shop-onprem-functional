@@ -23,9 +23,9 @@ use Traversable;
 /**
  * Retry a callback until the number of retries are reached or the callback does no longer throw an exception
  *
- * @param callable         $callback
- * @param int              $retries
- * @param Traversable|null $delaySequence Default: no delay between calls
+ * @param callable                $callback
+ * @param int                     $retries
+ * @param Traversable<mixed>|null $delaySequence Default: no delay between calls
  * @return mixed Return value of the function
  * @no-named-arguments
  * @throws InvalidArgumentException
@@ -44,7 +44,6 @@ function retry(callable $callback, int $retries, ?Traversable $delaySequence = n
     } else {
         $delays = \array_fill_keys(\range(0, $retries), 0);
     }
-
     $retry = 0;
     foreach ($delays as $delay) {
         try {
@@ -54,11 +53,9 @@ function retry(callable $callback, int $retries, ?Traversable $delaySequence = n
                 throw $e;
             }
         }
-
         if ($delay > 0) {
             \usleep($delay);
         }
-
         ++$retry;
     }
 }

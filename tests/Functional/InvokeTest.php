@@ -48,6 +48,7 @@ class InvokeTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\invoke() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         invoke('invalidCollection', 'method');
     }
 

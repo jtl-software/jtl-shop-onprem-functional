@@ -19,10 +19,10 @@ use Functional\Exceptions\InvalidArgumentException;
  * Pick a single element from a collection of objects or arrays by index.
  * If no such index exists, return the default value.
  *
- * @param ArrayAccess|array $collection
- * @param mixed             $index
- * @param mixed             $default
- * @param callable|null     $callback Custom function to check if index exists
+ * @param ArrayAccess<mixed>|array<mixed> $collection
+ * @param mixed                           $index
+ * @param mixed                           $default
+ * @param callable|null                   $callback Custom function to check if index exists
  * @return mixed
  * @no-named-arguments
  */

@@ -15,8 +15,8 @@ namespace Functional;
 /**
  * Return a new function with the arguments partially applied starting from the right
  *
- * @param callable $callback
- * @param array    ...$arguments
+ * @param callable     $callback
+ * @param array<mixed> ...$arguments
  * @return callable
  * @no-named-arguments
  */

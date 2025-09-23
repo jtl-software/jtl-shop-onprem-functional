@@ -15,23 +15,22 @@ namespace Functional\Tests;
 use DomainException;
 use Functional\Exceptions\InvalidArgumentException;
 use Iterator;
-use PHPUnit\Framework\Error\Deprecated;
 use PHPUnit\Framework\TestCase;
 use Traversable;
 use TypeError;
 
 class AbstractTestCase extends TestCase
 {
-    /** @var array */
+    /** @var array<mixed> */
     protected array $list;
 
-    /** @var Traversable */
+    /** @var Traversable<mixed> */
     protected Traversable $listIterator;
 
-    /** @var array */
+    /** @var array<mixed> */
     protected array $hash;
 
-    /** @var Traversable */
+    /** @var Traversable<mixed> */
     protected Traversable $hashIterator;
 
     protected function expectArgumentError(string $message): void
@@ -44,18 +43,14 @@ class AbstractTestCase extends TestCase
     {
         $this->expectException(TypeError::class);
 
-        if (PHP_VERSION_ID < 80000) {
-            $this->expectExceptionMessage(\sprintf('Argument %d passed to %s() must be callable', $position, $fn));
-        } else {
-            $this->expectExceptionMessageMatches(
-                \sprintf(
-                    '/^%s\(\): Argument \#%d( \(\$callback\))? must be of type \??callable, %s given.*/',
-                    \preg_quote($fn, '/'),
-                    $position,
-                    $actualType
-                )
-            );
-        }
+        $this->expectExceptionMessageMatches(
+            \sprintf(
+                '/^%s\(\): Argument \#%d( \(\$callback\))? must be of type \??callable, %s given.*/',
+                \preg_quote($fn, '/'),
+                $position,
+                $actualType
+            )
+        );
     }
 
     public function exception(): void
@@ -79,25 +74,5 @@ class AbstractTestCase extends TestCase
         }
 
         return $values;
-    }
-
-    public function expectDeprecation(): void
-    {
-        if (\method_exists(parent::class, __FUNCTION__)) {
-            parent::expectDeprecation();
-            return;
-        }
-
-        $this->expectException(Deprecated::class);
-    }
-
-    public function expectDeprecationMessage(string $message): void
-    {
-        if (\method_exists(parent::class, __FUNCTION__)) {
-            parent::expectDeprecationMessage($message);
-            return;
-        }
-
-        $this->expectExceptionMessage($message);
     }
 }

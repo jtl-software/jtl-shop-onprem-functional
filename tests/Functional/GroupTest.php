@@ -111,12 +111,14 @@ class GroupTest extends AbstractTestCase
     public function testPassNoCollection(): void
     {
         $this->expectArgumentError('Functional\group() expects parameter 1 to be array or instance of Traversable');
+        /** @noinspection PhpParamsInspection */
         group('invalidCollection', 'strlen');
     }
 
     public function testPassNonCallable(): void
     {
         $this->expectCallableArgumentError('Functional\group', 2);
+        /** @noinspection PhpParamsInspection */
         group($this->list, 'undefinedFunction');
     }
 }
