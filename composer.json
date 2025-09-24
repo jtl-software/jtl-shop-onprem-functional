@@ -138,7 +138,7 @@
   "scripts": {
     "test": "vendor/bin/phpunit",
     "tests": "vendor/bin/phpunit",
-    "phpstan": "phpstan analyse",
+    "phpstan": "vendor/bin/phpstan analyse",
     "coding-style": "vendor/bin/phpcs && vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php_cs.dist",
     "clear": "rm -rf vendor/"
   }
